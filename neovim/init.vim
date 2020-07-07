@@ -1,13 +1,13 @@
-" ###### Tobias Johansson init ######
-" Repo: https://github.com/tobiasdev
-" Version: 0.1
+"####### Tobias Johansson Nvim config ######
+"Repo: https://github.com/tobiasdev
+"Version: 0.2
 
 " ###### HOST ######
 " ### PYTHON ###
-" let g:python3_host_prog = 'Add path to python 3 installation'
+let g:python3_host_prog = 'C:\Python38\python.exe'
 
-" ###### PLUGINS (Using VimPlug) ######
-" Specify a directory for plugins
+" ###### PLUGINS ######
+"Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
@@ -24,35 +24,46 @@ set encoding=utf-8
 set cursorline
 set number
 
-" Change tabs to be similar to Visual Studio Code since most other people I
-" work with use that
+"Change tabs to be similar to Visual Studio Code since most other people I
+"work with use that
 set tabstop=4
 set shiftwidth=4
 set expandtab
 
-" If possible the terminal will use the colors from "Relaxed Dark"
+"If possible the terminal will use the colors from "Relaxed Dark"
 set termguicolors 
 
 " ### PLUGIN SPECIFIC CONFIGURATION ###
 let g:vim_markdown_folding_disabled=1
 
-" ###### Personalized keyboard shortcuts ######
+" ###### Personalized keyboard shortcuts #####
 " ### NORMAL MODE ###
-" Holding down CTRL and using hl moves me to the start or end of a sentence
-nnoremap <c-h> <esc>0
-nnoremap <c-l> <esc>$
+"Holding down CTRL and using hl moves me to the start or end of a sentence
+nnoremap <C-h> <esc>0
+nnoremap <C-l> <esc>$
 
-" Holding down ALT and using jk moves the full line up or down
+"Holding down ALT and using jk moves the full line up or down
 nnoremap <m-j> <esc>ddp
 nnoremap <m-k> <esc>ddkP
 
-" ### INSERT MODE ###
-" Holding down CTRL and using hjkl make the cursor move like in Normal mode
-inoremap <c-h> <left>
-inoremap <c-l> <right>
-inoremap <c-j> <down>
-inoremap <c-k> <up>
+"Add so paste comes from the OS Clipboard
+nnoremap <C-v> <esc>"+p
 
-" Holding down ALT and using jk moves the full line up or down
+" ### VISUAL MODE ###
+"Adds the "standard" copy and paste behaviour
+vnoremap <C-c> "+y
+vnoremap <C-v> "+p
+
+" ### INSERT MODE ###
+"Holding down CTRL and using hjkl make the cursor move like in Normal mode
+inoremap <C-h> <left>
+inoremap <C-l> <right>
+inoremap <C-j> <down>
+inoremap <C-k> <up>
+
+"Add CTRL+V to paste from OS Clipboard
+inoremap <C-v> <esc>"+pi
+
+"Holding down ALT and using jk moves the full line up or down
 inoremap <m-j> <esc>ddpi
 inoremap <m-k> <esc>ddkPi
