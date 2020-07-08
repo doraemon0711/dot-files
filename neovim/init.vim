@@ -1,6 +1,6 @@
 "####### Tobias Johansson Nvim config ######
 "Repo: https://github.com/tobiasdev
-"Version: 0.2
+"Version: 0.2.1
 
 " ###### HOST ######
 " ### PYTHON ###
@@ -48,6 +48,11 @@ nnoremap <m-k> <esc>ddkP
 
 "Add so paste comes from the OS Clipboard
 nnoremap <C-v> <esc>"+p
+
+"Tab will move between open Windows
+nnoremap <tab> <esc><c-w>w
+
+nnoremap <m-q> <esc>:q<enter>
 
 " ### VISUAL MODE ###
 "Adds the "standard" copy and paste behaviour
