@@ -68,12 +68,6 @@ vnoremap <C-c> "+y
 vnoremap <C-v> "+p
 
 " ### INSERT MODE ###
-"Holding down CTRL and using hjkl make the cursor move like in Normal mode
-inoremap <C-h> <left>
-inoremap <C-l> <right>
-inoremap <C-j> <down>
-inoremap <C-k> <up>
-
 "Add CTRL+V to paste from OS Clipboard
 inoremap <C-v> <esc>"+pi
 
