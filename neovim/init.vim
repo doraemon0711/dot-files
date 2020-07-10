@@ -1,19 +1,27 @@
 "####### Tobias Johansson Nvim config ######
 "Repo: https://github.com/tobiasdev
-"Version: 0.2.1
+"Version: 0.2.2
+"Changes: Added FZF plugin and keyboard shortcuts to use it 
 
 " ###### HOST ######
 " ### PYTHON ###
-let g:python3_host_prog = 'C:\Python38\python.exe'
+" let g:python3_host_prog = 'C:\Python38\python.exe'
 
 " ###### PLUGINS ######
 "Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
-	Plug 'plasticboy/vim-markdown'
+    " ### Faster search and find plugins ### 
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
+	" ### Markdown ###
+    Plug 'plasticboy/vim-markdown'
+    " ### Better git in VIM ###
 	Plug 'tpope/vim-fugitive'
+    " ### Add a better file-explorer to VIM ###
 	Plug 'scrooloose/nerdtree'
+    " ### Web-Development plugins ###
 	Plug 'ap/vim-css-color'
 call plug#end()
 
@@ -72,3 +80,8 @@ inoremap <C-v> <esc>"+pi
 "Holding down ALT and using jk moves the full line up or down
 inoremap <m-j> <esc>ddpi
 inoremap <m-k> <esc>ddkPi
+
+" ### Plugin-specific ###
+" # FZF #
+nnoremap <C-p> <esc>:Files<CR>
+inoremap <C-f> <esc>:Lines<CR>
