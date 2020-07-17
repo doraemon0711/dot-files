@@ -11,16 +11,44 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
+;; ########## Install "Use-Package" to get more packages ##########
+
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
 
 (eval-when-compile (require 'use-package))
 
+;; ########## Packages to install (using use-package) ##########
+;; ######## evil - Basically Vim for emacs ########
 (use-package evil
-	     :ensure t
-	     :init
-	     (evil-mode 1))
+  :ensure t
+  :config
+  (evil-mode 1))
+
+;; ######## magit - Great git package for emacs ########
+(use-package magit
+  :ensure t)
+
+(use-package evil-magit
+  :after magit evil
+  :ensure t)
+
+;; ######## Treemacs - Better for file-explorer & extra plugins ########
+(use-package treemacs
+  :ensure t
+  :config
+    (provide 'init-treemacs))
+
+(use-package treemacs-evil
+  :after treemacs evil
+  :ensure t)
+
+(use-package treemacs-magit
+  :after treemacs magit
+  :ensure t)
+
+
 
 ;; Custom commands
 (defun move-line-up ()
