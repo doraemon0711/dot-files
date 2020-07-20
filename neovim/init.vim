@@ -1,47 +1,35 @@
 "####### Tobias Johansson Nvim config ######
 "Repo: https://github.com/tobiasdev
-"Version: 0.2.2
-"Changes: Added FZF plugin and keyboard shortcuts to use it 
+"Version: 0.3.0
+"Changes: Working on colors for FZF and comment/uncomment plugin, and COC 
 
 " ###### HOST ######
 " ### PYTHON ###
-" let g:python3_host_prog = 'C:\Python38\python.exe'
-
-" ###### PLUGIN MANAGER ######
-" check whether vim-plug is installed and install it if not
-let plugpath = expand('<sfile>:p:h'). '/autoload/plug.vim'
-
-if !filereadable(plugpath)
-    if executable('curl')
-        let plugurl = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-        call system('curl -fLo ' . shellescape(plugpath) . ' --create-dirs ' . plugurl)
-        if v:shell_error
-            echom "Error downloading vim-plug. Please install it manually.\n"
-            exit
-        endif
-    else
-        echom "vim-plug not installed. Please install it manually or install curl.\n"
-        exit
-    endif
-endif
-
+let g:python3_host_prog = 'C:\Python38\python.exe'
 
 " ###### PLUGINS ######
 "Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
-call plug#begin('~/.nvim/plugged')
-    " ### Faster search and find plugins ### 
+call plug#begin('~/.vim/plugged')
+    " ### Faster search and find ### 
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
 	" ### Markdown ###
     Plug 'plasticboy/vim-markdown'
+    Plug 'godlygeek/tabular'
     " ### Better git in VIM ###
 	Plug 'tpope/vim-fugitive'
     " ### Add a better file-explorer to VIM ###
 	Plug 'scrooloose/nerdtree'
     " ### Web-Development plugins ###
 	Plug 'ap/vim-css-color'
+
+    " ### Development plugins ###
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'tpope/vim-commentary'
+    " ### Finances ###
+    Plug 'ledger/vim-ledger'
 call plug#end()
 
 " ###### CONFIGURATION ######
@@ -62,6 +50,22 @@ set termguicolors
 
 " ### PLUGIN SPECIFIC CONFIGURATION ###
 let g:vim_markdown_folding_disabled=1
+
+" Need more color work! 
+" let g:fzf_colors =
+" \ { 'fg':      ['fg', 'Normal'],
+"   \ 'bg':      ['bg', 'Normal'],
+"   \ 'hl':      ['fg', 'Comment'],
+"   \ 'fg+':     ['fg', 'Cursor'],
+"   \ 'bg+':     ['bg', 'Cursor'],
+"   \ 'hl+':     ['fg', 'Statement'],
+"   \ 'info':    ['fg', 'PreProc'],
+"   \ 'border':  ['fg', 'Normal'],
+"   \ 'prompt':  ['fg', 'Conditional'],
+"   \ 'pointer': ['fg', 'Exception'],
+"   \ 'marker':  ['fg', 'Keyword'],
+"   \ 'spinner': ['fg', 'Label'],
+"   \ 'header':  ['fg', 'Comment'] }
 
 " ###### Personalized keyboard shortcuts #####
 " ### NORMAL MODE ###
@@ -87,6 +91,10 @@ vnoremap <C-c> "+y
 vnoremap <C-v> "+p
 
 " ### INSERT MODE ###
+"Holding down CTRL and using hjkl make the cursor move like in Normal mode
+inoremap <C-j> <down>
+inoremap <C-k> <up>
+
 "Add CTRL+V to paste from OS Clipboard
 inoremap <C-v> <esc>"+pi
 
