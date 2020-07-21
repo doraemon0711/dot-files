@@ -1,11 +1,30 @@
 "####### Tobias Johansson Nvim config ######
 "Repo: https://github.com/tobiasdev
-"Version: 0.3.0
-"Changes: Working on colors for FZF and comment/uncomment plugin, and COC 
+"Version: 0.4.0
+"Changes: Added several new plugins and shortcuts 
+
+"####### Commands to remember ######
+" :ls - Shows all the last buffers (for if you accidently close one)
 
 " ###### HOST ######
 " ### PYTHON ###
 let g:python3_host_prog = 'C:\Python38\python.exe'
+
+" check whether vim-plug is installed and install it if necessary
+let plugpath = expand('<sfile>:p:h'). '/autoload/plug.vim'
+if !filereadable(plugpath)
+    if executable('curl')
+        let plugurl = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+        call system('curl -fLo ' . shellescape(plugpath) . ' --create-dirs ' . plugurl)
+        if v:shell_error
+            echom "Error downloading vim-plug. Please install it manually.\n"
+            exit
+        endif
+    else
+        echom "vim-plug not installed. Please install it manually or install curl.\n"
+        exit
+    endif
+endif
 
 " ###### PLUGINS ######
 "Specify a directory for plugins
@@ -20,14 +39,17 @@ call plug#begin('~/.vim/plugged')
     Plug 'godlygeek/tabular'
     " ### Better git in VIM ###
 	Plug 'tpope/vim-fugitive'
+    Plug 'mhinz/vim-signify'
     " ### Add a better file-explorer to VIM ###
 	Plug 'scrooloose/nerdtree'
+    Plug 'ryanoasis/vim-devicons'
     " ### Web-Development plugins ###
 	Plug 'ap/vim-css-color'
-
+    Plug 'alvan/vim-closetag'
     " ### Development plugins ###
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'tpope/vim-commentary'
+    Plug 'rstacruz/vim-closer'
     " ### Finances ###
     Plug 'ledger/vim-ledger'
 call plug#end()
@@ -51,7 +73,7 @@ set termguicolors
 " ### PLUGIN SPECIFIC CONFIGURATION ###
 let g:vim_markdown_folding_disabled=1
 
-" Need more color work! 
+let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver']
 " let g:fzf_colors =
 " \ { 'fg':      ['fg', 'Normal'],
 "   \ 'bg':      ['bg', 'Normal'],
@@ -68,6 +90,20 @@ let g:vim_markdown_folding_disabled=1
 "   \ 'header':  ['fg', 'Comment'] }
 
 " ###### Personalized keyboard shortcuts #####
+
+" # Open up terminal at the bottom #
+set splitbelow
+" turn terminal to normal mode with escape
+tnoremap <Esc> <C-\><C-n>
+" start terminal in insert mode
+au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+
+function! OpenTerminal()
+  split term://bash
+  resize 10
+endfunction
+nnoremap <c-n> :call OpenTerminal()<CR>
+
 " ### NORMAL MODE ###
 "Holding down CTRL and using hl moves me to the start or end of a sentence
 nnoremap <C-h> <esc>0
@@ -105,4 +141,12 @@ inoremap <m-k> <esc>ddkPi
 " ### Plugin-specific ###
 " # FZF #
 nnoremap <C-p> <esc>:Files<CR>
+let g:fzf_action = {
+    \ 'ctrl-t': 'tab-split',
+    \ 'ctrl-s': 'split',
+    \ 'ctrl-v': 'vsplit'
+\}
 inoremap <C-f> <esc>:Lines<CR>
+
+" # NERDTree #
+nnoremap <C-b> <esc>:NERDTreeToggle<CR>
