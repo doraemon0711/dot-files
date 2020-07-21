@@ -1,7 +1,7 @@
 "####### Tobias Johansson Nvim config ######
 "Repo: https://github.com/tobiasdev
-"Version: 0.4.0
-"Changes: Added several new plugins and shortcuts 
+"Version: 0.4.1
+"Changes: Getting snippets to work in NeoVim! 
 
 "####### Commands to remember ######
 " :ls - Shows all the last buffers (for if you accidently close one)
@@ -42,7 +42,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'mhinz/vim-signify'
     " ### Add a better file-explorer to VIM ###
 	Plug 'scrooloose/nerdtree'
-    Plug 'ryanoasis/vim-devicons'
     " ### Web-Development plugins ###
 	Plug 'ap/vim-css-color'
     Plug 'alvan/vim-closetag'
@@ -73,7 +72,8 @@ set termguicolors
 " ### PLUGIN SPECIFIC CONFIGURATION ###
 let g:vim_markdown_folding_disabled=1
 
-let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver']
+let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver', 'coc-snippets']
+
 " let g:fzf_colors =
 " \ { 'fg':      ['fg', 'Normal'],
 "   \ 'bg':      ['bg', 'Normal'],
