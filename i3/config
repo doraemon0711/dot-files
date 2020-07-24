@@ -1,5 +1,8 @@
 # i3 config file
-# Version: 0.2
+# Maintainer: Tobias Johansson
+# Github Repo: https://www.github.com/tobiasdev/dot-files
+# Version: 0.2.1
+# Latest Change: Updated some keybindings, fixed some startup software and fixed some color errors 
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 # ------ Variables ------ # 
 set $mod Mod4
@@ -19,10 +22,9 @@ set $ws9 "9"
 workspace_layout default
 
 # ------ Autostart ------ #
+# exec --no-startup-id nextcloud
+# exec --no-startup-id ~/.config/polybar/launch.sh
 exec --no-startup-id xcompmgr -c
-
-# Polybar
-exec --no-startup-id ~/.config/polybar/launch.sh
 
 # Get auth work with polkit-gnome
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -36,11 +38,6 @@ exec --no-startup-id xset s 480 dpms 600 600 600
 
 # Desktop notifications
 exec --no-startup-id /usr/bin/dunst
-
-# --- EndevourOS Specifics --- # 
-# Update notification should be set to tray and show a notification
-exec --no-startup-id sleep 15 && eos-update-notifier
-exec --no-startup-id sleep 15 && eos-welcome
 
 # ------ Set floating for special apps ------ #
 for_window [class="Xsane" instance="xsane"] floating enable
@@ -180,7 +177,7 @@ set $bg-color            #A38F71
 set $inactive-bg-color   #3B3636
 set $text-color          #C0B1AF
 set $inactive-text-color #3B3636
-set $urgent-bg-color     #00FF00
+set $urgent-bg-color     #FFB144
 set $indicator-color     #C0B1AF
 
 # Font for everything (you can add a specific font to the bar if you want too)
@@ -220,6 +217,5 @@ bindsym $mod+F5 exec mocp --toggle-pause
 bindsym $mod+F6 exec mocp --stop
 bindsym $mod+F7 exec mocp --previous
 bindsym $mod+F8 exec mocp --next
-
 
 bindsym $mod+m exec "/usr/local/bin/switch-audio-port"
