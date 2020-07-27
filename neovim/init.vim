@@ -1,7 +1,7 @@
 "####### Tobias Johansson Nvim config ######
 "Repo: https://github.com/tobiasdev
-"Version: 0.4.5
-"Changes: Added more COC keyboard shortcuts!  
+"Version: 0.4.8
+"Changes: Added VimWiki and Lightline  
 
 "####### Commands to remember ######
 " :ls - Shows all the last buffers (for if you accidently close one)
@@ -29,17 +29,17 @@ endif
 " ###### PLUGINS ######
 "Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
+    " ### Vim helpers ### 
+	Plug 'scrooloose/nerdtree'
+    Plug 'itchyny/lightline.vim'
     " ### Faster search and find ### 
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
 	" ### Markdown ###
     Plug 'plasticboy/vim-markdown'
-    Plug 'godlygeek/tabular'
     " ### Better git in VIM ###
 	Plug 'tpope/vim-fugitive'
     Plug 'mhinz/vim-signify'
-    " ### Add a better file-explorer to VIM ###
-	Plug 'scrooloose/nerdtree'
     " ### Web-Development plugins ###
 	Plug 'ap/vim-css-color'
     Plug 'alvan/vim-closetag'
@@ -47,6 +47,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'tpope/vim-commentary'
     Plug 'rstacruz/vim-closer'
+    Plug 'godlygeek/tabular'
+    " ### Project Management ###
+    Plug 'vimwiki/vimwiki'
     " ### Finances ###
     Plug 'ledger/vim-ledger'
 call plug#end()
@@ -67,6 +70,9 @@ set expandtab
 "If possible the terminal will use the colors from "Relaxed Dark"
 set termguicolors 
 
+
+" ### CURSORS CHANGES ###
+set guicursor=a:block
 " ### PLUGIN SPECIFIC CONFIGURATION ###
 let g:vim_markdown_folding_disabled=1
 
@@ -87,8 +93,27 @@ let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', '
 "   \ 'spinner': ['fg', 'Label'],
 "   \ 'header':  ['fg', 'Comment'] }
 
-" ###### Personalized keyboard shortcuts #####
+let g:lightline = {
+      \ 'colorscheme': 'relaxed_dark',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'inactive': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead',
+      \   'filename': 'LightlineFilename'
+      \ },
+      \ }
 
+function! LightlineFilename()
+  return expand('%:t') ==# '' ? '[No Name]' : expand('%:p:h:t') . '/' . expand('%:t') 
+endfunction
+
+" ###### Personalized keyboard shortcuts #####
 " # Open up terminal at the bottom #
 set splitbelow
 " turn terminal to normal mode with escape
@@ -114,10 +139,12 @@ nnoremap <m-k> <esc>ddkP
 "Add so paste comes from the OS Clipboard
 nnoremap <C-v> <esc>"+p
 
-"Tab will move between open Windows
-nnoremap <tab> <esc><c-w>w
-
+"Close Nvim
 nnoremap <m-q> <esc>:q<enter>
+
+"Jump between splits with ALT+hl
+nnoremap <m-h> <c-w><c-h>
+nnoremap <m-l> <c-w><c-l> 
 
 " ### VISUAL MODE ###
 "Adds the "standard" copy and paste behaviour
@@ -148,6 +175,7 @@ inoremap <C-f> <esc>:Lines<CR>
 
 " # NERDTree #
 nnoremap <C-b> <esc>:NERDTreeToggle<CR>
+nnoremap <C-v> <esc>:NERDTreeFind<CR>
 
 " # COC #
 " Use tab for trigger completion with characters ahead and navigate.
