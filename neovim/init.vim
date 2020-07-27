@@ -8,7 +8,7 @@
 
 " ###### HOST ######
 " ### PYTHON ###
-let g:python3_host_prog = 'C:\Python38\python.exe'
+" let g:python3_host_prog = 'C:\Python38\python.exe'
 
 " check whether vim-plug is installed, if not install it
 let plugpath = expand('<sfile>:p:h'). '/autoload/plug.vim'
@@ -28,7 +28,7 @@ endif
 
 " ###### PLUGINS ######
 "Specify a directory for plugins
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.nvim/plugged')
     " ### Vim helpers ### 
 	Plug 'scrooloose/nerdtree'
     Plug 'itchyny/lightline.vim'
