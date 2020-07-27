@@ -90,25 +90,34 @@ let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', '
 "   \ 'spinner': ['fg', 'Label'],
 "   \ 'header':  ['fg', 'Comment'] }
 
-let g:lightline = {
-      \ 'colorscheme': 'relaxed_dark',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'inactive': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead',
-      \   'filename': 'LightlineFilename'
-      \ },
-      \ }
+" http://vimdoc.sourceforge.net/htmldoc/options.html#'statusline'
 
-function! LightlineFilename()
-  return expand('%:t') ==# '' ? '[No Name]' : expand('%:p:h:t') . '/' . expand('%:t') 
-endfunction
+let g:airline_section_a = airline#section#create(['mode'])
+let g:airline_section_b = airline#section#create(['hunks', 'branch'])
+let g:airline_section_x = airline#section#create([])
+let g:airline_section_y = airline#section#create(['%Y'])
+let g:airline_section_z = airline#section#create(['%l', '/', '%L']) 
+
+" let g:lightline = {
+"       \ 'colorscheme': 'relaxed_dark',
+"       \ 'active': {
+"       \   'left': [ [ 'mode', 'paste' ],
+"       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+"       \ },
+"       \ 'inactive': {
+"       \   'left': [ [ 'mode', 'paste' ],
+"       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+"       \ },
+"       \ 'component_function': {
+"       \   'gitbranch': 'FugitiveHead',
+"       \   'filename': 'LightlineFilename'
+"       \ },
+"       \ }
+
+" function! LightlineFilename()
+"   return expand('%:t') ==# '' ? '[No Name]' : expand('%:p:h:t') . '/' . expand('%:t') 
+" endfunction
+
 
 " ###### Personalized keyboard shortcuts #####
 " # Open up terminal at the bottom #
