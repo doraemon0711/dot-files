@@ -70,9 +70,6 @@ set expandtab
 "If possible the terminal will use the colors from "Relaxed Dark"
 set termguicolors 
 
-
-" ### CURSORS CHANGES ###
-set guicursor=a:block
 " ### PLUGIN SPECIFIC CONFIGURATION ###
 let g:vim_markdown_folding_disabled=1
 
