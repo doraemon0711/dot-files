@@ -1,8 +1,8 @@
 " ---------------------------------------------------------------
 " Maintainer: Tobias Johansson (TobiasDev)
 " Repo: https://github.com/TobiasDev/dot-files
-" Version: 0.5.0
-" Changes: Removed unused plugins and did some cleaning of the file
+" Version: 0.5.1
+" Changes: Added Godot plugins
 "
 " Commands to remember
 " :ls - Shows all the last buffers (for if you accidently close one)
@@ -54,6 +54,11 @@ call plug#begin('~/.nvim/plugged')
     Plug 'tpope/vim-fugitive'
     Plug 'mhinz/vim-signify'
     " ---
+    " Game-Development plugins
+    " ---
+    " Optional: Plug 'calviken/vim-gdscript3'
+    Plug 'habamax/vim-godot'
+    " ---
     " Web-Development plugins
     " ---
     Plug 'ap/vim-css-color'
@@ -92,7 +97,7 @@ let g:vim_markdown_folding_disabled = 1
 " ---
 " neoclide/coc.nvim
 " ---
-let g:coc_global_extensions         = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver', 'coc-snippets']
+let g:coc_global_extensions         = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-godot', 'coc-prettier', 'coc-tsserver', 'coc-snippets']
 " ---
 " vim-airline/vim-airline
 " ---
