@@ -1,8 +1,8 @@
 " ---------------------------------------------------------------
 " Maintainer: Tobias Johansson (TobiasDev)
 " Repo: https://github.com/TobiasDev/dot-files
-" Version: 0.5.1
-" Changes: Added Godot plugins
+" Version: 0.5.2
+" Changes: Added shortcuts for jumping 15 lines up or down
 "
 " Commands to remember
 " :ls - Shows all the last buffers (for if you accidently close one)
@@ -56,8 +56,7 @@ call plug#begin('~/.nvim/plugged')
     " ---
     " Game-Development plugins
     " ---
-    " Optional: Plug 'calviken/vim-gdscript3'
-    Plug 'habamax/vim-godot'
+    Plug 'clktmr/vim-gdscript3'
     " ---
     " Web-Development plugins
     " ---
@@ -80,6 +79,7 @@ colorscheme   relaxed-dark
 set           encoding=utf-8
 set           cursorline
 set           number
+set           noshowmode
 "Change TAB to be similar to VS Code since most other people I work with use that
 set           tabstop=4
 set           shiftwidth=4
@@ -97,7 +97,8 @@ let g:vim_markdown_folding_disabled = 1
 " ---
 " neoclide/coc.nvim
 " ---
-let g:coc_global_extensions         = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-godot', 'coc-prettier', 'coc-tsserver', 'coc-snippets']
+let g:coc_global_extensions         = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver']
+
 " ---
 " vim-airline/vim-airline
 " ---
@@ -131,6 +132,8 @@ nnoremap <c-n> :call OpenTerminal()<CR>
 "Holding down CTRL and using hl moves me to the start or end of a sentence
 nnoremap <C-h> <esc>0
 nnoremap <C-l> <esc>$
+nnoremap <C-j> <esc>15j 
+nnoremap <C-k> <esc>15k
 
 "Holding down ALT and using jk moves the full line up or down
 nnoremap <m-j> <esc>ddp
