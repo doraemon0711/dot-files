@@ -1,8 +1,8 @@
 " ---------------------------------------------------------------
 " Maintainer: Tobias Johansson (TobiasDev)
 " Repo: https://github.com/TobiasDev/dot-files
-" Version: 0.5.2
-" Changes: Added shortcuts for jumping 15 lines up or down
+" Version: 0.5.3
+" Changes: Updated some Godot things
 "
 " Commands to remember
 " :ls - Shows all the last buffers (for if you accidently close one)
@@ -11,7 +11,7 @@
 " ---------------------------------------------------------------
 " HOST - Windows 10 specific
 " ---------------------------------------------------------------
-let g:python3_host_prog = 'C:\Python38\python.exe'
+" let g:python3_host_prog = 'C:\Python38\python.exe'
 
 " ---------------------------------------------------------------
 " PLUGINS
@@ -56,7 +56,7 @@ call plug#begin('~/.nvim/plugged')
     " ---
     " Game-Development plugins
     " ---
-    Plug 'clktmr/vim-gdscript3'
+    Plug 'habamax/vim-godot'
     " ---
     " Web-Development plugins
     " ---
@@ -80,6 +80,7 @@ set           encoding=utf-8
 set           cursorline
 set           number
 set           noshowmode
+set           nobackup
 "Change TAB to be similar to VS Code since most other people I work with use that
 set           tabstop=4
 set           shiftwidth=4
@@ -97,7 +98,7 @@ let g:vim_markdown_folding_disabled = 1
 " ---
 " neoclide/coc.nvim
 " ---
-let g:coc_global_extensions         = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver']
+let g:coc_global_extensions         = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver', 'coc-ultisnips']
 
 " ---
 " vim-airline/vim-airline
@@ -132,7 +133,7 @@ nnoremap <c-n> :call OpenTerminal()<CR>
 "Holding down CTRL and using hl moves me to the start or end of a sentence
 nnoremap <C-h> <esc>0
 nnoremap <C-l> <esc>$
-nnoremap <C-j> <esc>15j 
+nnoremap <C-j> <esc>15j
 nnoremap <C-k> <esc>15k
 
 "Holding down ALT and using jk moves the full line up or down
@@ -178,7 +179,6 @@ vnoremap <C-v> "+p
 " ---
 nnoremap <C-p> <esc>:Files<CR>
 let g:fzf_action = {
-    \ 'ctrl-t': 'tab-split',
     \ 'ctrl-s': 'split',
     \ 'ctrl-v': 'vsplit'
 \}
