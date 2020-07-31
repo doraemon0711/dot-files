@@ -135,49 +135,53 @@ nnoremap <c-n> :call OpenTerminal()<CR>
 " -----------------------------
 " ALL MODES
 " -----------------------------
+" Save
 noremap <C-s> <esc>:w<enter>
 
 " -----------------------------
 " NORMAL MODE
 " -----------------------------
-"Holding down CTRL and using hl moves me to the start or end of a sentence
+" Holding down CTRL and using hl moves me to the start or end of a sentence
 nnoremap <C-h> <esc>0
 nnoremap <C-l> <esc>$
 nnoremap <C-j> <esc>15j
 nnoremap <C-k> <esc>15k
 
-"Holding down ALT and using jk moves the full line up or down
+" Holding down ALT and using jk moves the full line up or down
 nnoremap <m-j> <esc>ddp
 nnoremap <m-k> <esc>ddkP
 
-"Add so paste comes from the OS Clipboard
+" Add so paste comes from the OS Clipboard
 nnoremap <C-v> <esc>"+p
 
-"Close Nvim
-nnoremap <m-q> <esc>:q<enter>
+" Close Nvim
+nnoremap <m-q> <esc>:q<cr>
 
-"Jump between splits with ALT+hl
+" Jump between splits with ALT+hl
 nnoremap <m-h> <c-w><c-h>
 nnoremap <m-l> <c-w><c-l>
+
+" Quick comment out
+nnoremap <m-c> :Commentary<cr>
 
 " -----------------------------
 " INSERT MODE
 " -----------------------------
-"Holding down CTRL and using hjkl make the cursor move like in Normal mode
+" Holding down CTRL and using hjkl make the cursor move like in Normal mode
 inoremap <C-j> <down>
 inoremap <C-k> <up>
 
-"Add CTRL+V to paste from OS Clipboard
+" Add CTRL+V to paste from OS Clipboard
 inoremap <C-v> <esc>"+pi
 
-"Holding down ALT and using jk moves the full line up or down
+" Holding down ALT and using jk moves the full line up or down
 inoremap <m-j> <esc>ddpi
 inoremap <m-k> <esc>ddkPi
 
 " -----------------------------
 " VISUAL MODE
 " -----------------------------
-"Adds the "standard" copy and paste behaviour
+" Adds the "standard" copy and paste behaviour
 vnoremap <C-c> "+y
 vnoremap <C-v> "+p
 
