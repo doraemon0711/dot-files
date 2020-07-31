@@ -1,8 +1,9 @@
 " ---------------------------------------------------------------
 " Maintainer: Tobias Johansson (TobiasDev)
 " Repo: https://github.com/TobiasDev/dot-files
-" Version: 0.5.3
-" Changes: Updated some Godot things
+" Version: 0.5.5
+" Changes: Added CTRL+S to act as a normal save (my fingers are just too used
+" to this command to not have it there by default)
 "
 " Commands to remember
 " :ls - Shows all the last buffers (for if you accidently close one)
@@ -69,6 +70,10 @@ call plug#begin('~/.nvim/plugged')
     Plug 'tpope/vim-commentary'
     Plug 'rstacruz/vim-closer'
     Plug 'godlygeek/tabular'
+    " ---
+    " Planning plugins
+    " ---
+    Plug 'vimwiki/vimwiki'
 call plug#end()
 
 " ---------------------------------------------------------------
@@ -98,7 +103,7 @@ let g:vim_markdown_folding_disabled = 1
 " ---
 " neoclide/coc.nvim
 " ---
-let g:coc_global_extensions         = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver', 'coc-ultisnips']
+let g:coc_global_extensions         = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver']
 
 " ---
 " vim-airline/vim-airline
@@ -126,6 +131,11 @@ function! OpenTerminal()
 endfunction
 
 nnoremap <c-n> :call OpenTerminal()<CR>
+
+" -----------------------------
+" ALL MODES
+" -----------------------------
+noremap <C-s> <esc>:w<enter>
 
 " -----------------------------
 " NORMAL MODE
@@ -170,6 +180,9 @@ inoremap <m-k> <esc>ddkPi
 "Adds the "standard" copy and paste behaviour
 vnoremap <C-c> "+y
 vnoremap <C-v> "+p
+
+vnoremap <C-j> 15j
+vnoremap <C-k> 15k
 
 " -----------------------------
 " Plugin-specific
