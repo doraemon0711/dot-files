@@ -141,7 +141,7 @@ noremap <C-s> <esc>:w<enter>
 " -----------------------------
 " NORMAL MODE
 " -----------------------------
-" Holding down CTRL and using hl moves me to the start or end of a sentence
+" Movement changes
 nnoremap <C-h> <esc>0
 nnoremap <C-l> <esc>$
 nnoremap <C-j> <esc>15j
