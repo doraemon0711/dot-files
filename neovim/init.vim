@@ -1,9 +1,8 @@
 " ---------------------------------------------------------------
 " Maintainer: Tobias Johansson (TobiasDev)
 " Repo: https://github.com/TobiasDev/dot-files
-" Version: 0.5.5
-" Changes: Added CTRL+S to act as a normal save (my fingers are just too used
-" to this command to not have it there by default)
+" Version: 0.5.7
+" Changes: Switched to a different closer plugin
 "
 " Commands to remember
 " :ls - Shows all the last buffers (for if you accidently close one)
@@ -68,7 +67,8 @@ call plug#begin('~/.nvim/plugged')
     " ---
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'tpope/vim-commentary'
-    Plug 'rstacruz/vim-closer'
+    Plug 'townk/vim-autoclose'
+    " Plug 'rstacruz/vim-closer'
     Plug 'godlygeek/tabular'
     " ---
     " Planning plugins
@@ -144,8 +144,8 @@ noremap <C-s> <esc>:w<enter>
 " Movement changes
 nnoremap <C-h> <esc>0
 nnoremap <C-l> <esc>$
-nnoremap <C-j> <esc>15j
-nnoremap <C-k> <esc>15k
+nnoremap <C-j> <esc>10j
+nnoremap <C-k> <esc>10k
 
 " Holding down ALT and using jk moves the full line up or down
 nnoremap <m-j> <esc>ddp
@@ -224,13 +224,6 @@ function! s:check_back_space() abort
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use <c-space> to trigger completion.
-if has('nvim')
-    inoremap <silent><expr> <c-space> coc#refresh()
-else
-    inoremap <silent><expr> <c-@> coc#refresh()
-endif
-
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
 " <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
@@ -242,6 +235,3 @@ endif
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
