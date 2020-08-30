@@ -1,8 +1,8 @@
 " ---------------------------------------------------------------
 " Maintainer: Tobias Johansson (TobiasDev)
 " Repo: https://github.com/TobiasDev/dot-files
-" Version: 0.5.7
-" Changes: Switched to a different closer plugin
+" Version: 0.5.8
+" Changes: Adding more keyboard shortcuts
 "
 " Commands to remember
 " :ls - Shows all the last buffers (for if you accidently close one)
@@ -157,6 +157,7 @@ nnoremap <C-v> <esc>"+p
 " Close Nvim
 nnoremap <m-q> <esc>:q<cr>
 
+nnoremap <m-s> <esc>:vs<cr>
 " Jump between splits with ALT+hl
 nnoremap <m-h> <c-w><c-h>
 nnoremap <m-l> <c-w><c-l>
@@ -200,6 +201,11 @@ let g:fzf_action = {
     \ 'ctrl-v': 'vsplit'
 \}
 inoremap <C-f> <esc>:Lines<CR>
+
+" ---
+" VimWiki
+" ---
+nnoremap <M-t> <esc>:VimwikiToggleListItem<CR>
 
 " ---
 " NERDTree
