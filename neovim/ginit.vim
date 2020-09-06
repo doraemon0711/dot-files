@@ -3,5 +3,5 @@
 " Version: 0.1
 
 " ###### THEMEMING ######
-GuiFont IBM Plex Mono:h11
+GuiFont Fira Code:h12
 
