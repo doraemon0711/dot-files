@@ -78,9 +78,11 @@ bindsym $mod+v split v
 # Kill focused window
 bindsym $mod+q kill
 
-# Rofi - Find installed apps and see current open windows
-bindsym Mod1+space exec rofi -modi drun -show drun -lines 8
-bindsym Mod1+Tab exec rofi -modi window -show window -lines 8
+# Rofi
+bindsym Mod1+space exec --no-startup-id ~/.config/rofi/launchers/launcher.sh
+bindsym Mod1+Tab exec --no-startup-id ~/.config/rofi/launchers/openwindows.sh
+bindsym $mod+p exec --no-startup-id ~/.config/rofi/scripts/screenshot.sh
+bindsym $mod+Shift+o exec --no-startup-id ~/.config/rofi/scripts/powermenu.sh
 
 # --- System --- #
 # Reload the configuration file
@@ -185,7 +187,7 @@ set $urgent-bg-color     #FFB144
 set $indicator-color     #C0B1AF
 
 # Font for everything (you can add a specific font to the bar if you want too)
-font pango:IBM Plex Mono 8
+font pango:Fira Code 8
 
 # Borders
 #hide_edge_borders both

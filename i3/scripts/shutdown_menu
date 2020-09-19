@@ -30,11 +30,11 @@
 #LOCKSCRIPT="i3lock-extra -m pixelize"
 
 # Colors: FG (foreground), BG (background), HL (highlighted)
-FG_COLOR="${FG_COLOR:-#bbbbbb}"
-BG_COLOR="${BG_COLOR:-#111111}"
-HLFG_COLOR="${HLFG_COLOR:-#111111}"
-HLBG_COLOR="${HLBG_COLOR:-#bbbbbb}"
-BORDER_COLOR="${BORDER_COLOR:-#222222}"
+FG_COLOR="${FG_COLOR:-#FF0000}"
+BG_COLOR="${BG_COLOR:-#FFFF00}"
+HLFG_COLOR="${HLFG_COLOR:-#00FFFF}"
+HLBG_COLOR="${HLBG_COLOR:-#0000FF}"
+BORDER_COLOR="${BORDER_COLOR:-#FF00FF}"
 
 # Options not related to colors
 ROFI_TEXT="${ROFI_TEXT}"
