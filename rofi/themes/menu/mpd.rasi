@@ -7,33 +7,35 @@
  *
  */
 
-@import "colors.rasi"
+@import "../colors.rasi"
 
 /* ########### */
 
 * {
   /* General */
-  text-font:                            "Fira Code 11";
-  icon-font:                            "Fira Code 11";
-  icon-font-small:                      "Fira Code 11";
+  text-font:                            "Comfortaa 14";
+  icon-font:                            "Hurmit Nerd Font Mono 48";
+  icon-font-small:                      "Hurmit Nerd Font Mono 24";
 
   option-6-listview-spacing:            10px;
 
-  menu-window-padding:                   5px 15px;
+  menu-window-padding:                   25px 35px;
   menu-inputbar-margin:                  10px 0px;
   menu-prompt-padding:                   10px 20px 10px 20px;
   menu-prompt-margin:                    0px 0px 0px -2px;
-  menu-element-border:                   10px;
-  menu-element-padding:                  3px 8px -1px -10px;
+  menu-element-border:                   0px;
+  menu-element-padding:                  40px 50px 35px -25px;
 }
 
 /* ########### */
 
 #window {
-  width: 29%;
-  height: 32%;
-  border: 8px;
-  border-color: #1F1E1F;
+  width: 70.5%;
+  height: 35%;
+  anchor: center;
+  location: center;
+  x-offset: 0%;
+  y-offset: 0%;
 }
 
 /* ########### */
@@ -48,7 +50,7 @@
   children: [ listview ];
 }
 #listview {
-  layout: vertical;
+  layout: horizontal;
 }
 #element {
   padding: @option-element-padding;
@@ -85,7 +87,7 @@ textbox-prompt-colon {
 }
 #textbox-prompt-colon {
   expand: false;
-  str: "System";
+  str: "MPD";
   background-color: @accent;
   text-color: @background;
 }
@@ -94,7 +96,7 @@ textbox-prompt-colon {
 }
 #listview {
   spacing: @option-6-listview-spacing;
-  lines: 5;
+  lines: 6;
 }
 #element {
   font: @icon-font;

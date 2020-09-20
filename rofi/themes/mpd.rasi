@@ -13,9 +13,9 @@
 
 * {
   /* General */
-  text-font:                            "Fira Code 11";
-  icon-font:                            "Fira Code 11";
-  icon-font-small:                      "Fira Code 11";
+  text-font:                            "Comfortaa 12";
+  icon-font:                            "Hurmit Nerd Font Mono 32";
+  icon-font-small:                      "Hurmit Nerd Font Mono 24";
 
   option-6-listview-spacing:            10px;
 
@@ -23,17 +23,15 @@
   menu-inputbar-margin:                  10px 0px;
   menu-prompt-padding:                   10px 20px 10px 20px;
   menu-prompt-margin:                    0px 0px 0px -2px;
-  menu-element-border:                   10px;
-  menu-element-padding:                  3px 8px -1px -10px;
+  menu-element-border:                   0px;
+  menu-element-padding:                  10px 15px 5px -35px;
 }
 
 /* ########### */
 
 #window {
-  width: 29%;
-  height: 32%;
-  border: 8px;
-  border-color: #1F1E1F;
+  width: 31%;
+  height: 19%;
 }
 
 /* ########### */
@@ -48,7 +46,7 @@
   children: [ listview ];
 }
 #listview {
-  layout: vertical;
+  layout: horizontal;
 }
 #element {
   padding: @option-element-padding;
@@ -85,7 +83,7 @@ textbox-prompt-colon {
 }
 #textbox-prompt-colon {
   expand: false;
-  str: "System";
+  str: "MPD";
   background-color: @accent;
   text-color: @background;
 }
@@ -94,7 +92,7 @@ textbox-prompt-colon {
 }
 #listview {
   spacing: @option-6-listview-spacing;
-  lines: 5;
+  lines: 6;
 }
 #element {
   font: @icon-font;

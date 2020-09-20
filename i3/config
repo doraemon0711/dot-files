@@ -82,16 +82,13 @@ bindsym $mod+q kill
 bindsym Mod1+space exec --no-startup-id ~/.config/rofi/launchers/launcher.sh
 bindsym Mod1+Tab exec --no-startup-id ~/.config/rofi/launchers/openwindows.sh
 bindsym $mod+p exec --no-startup-id ~/.config/rofi/scripts/screenshot.sh
-bindsym $mod+Shift+o exec --no-startup-id ~/.config/rofi/scripts/powermenu.sh
+bindsym $mod+Shift+q exec --no-startup-id ~/.config/rofi/scripts/powermenu.sh
 
 # --- System --- #
 # Reload the configuration file
 bindsym $mod+Shift+c reload
 # Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-
-# Brings up shutdown menu
-bindsym $mod+Shift+q exec ~/.config/i3/scripts/shutdown_menu -p rofi -c
 
 # - Quick-start apps - #
 # Terminal
