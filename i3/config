@@ -1,8 +1,8 @@
 # i3 config file
 # Maintainer: Tobias Johansson
 # Github Repo: https://www.github.com/tobiasdev/dot-files
-# Version: 0.2.2
-# Latest Change: Added more startup software and window-rules
+# Version: 0.2.3
+# Latest Change: Switched to Alacritty for terminal
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 # ------ Variables ------ #
 set $mod Mod4
@@ -24,7 +24,6 @@ workspace_layout default
 # ------ Autostart ------ #
 exec --no-startup-id nextcloud
 exec --no-startup-id ~/.config/polybar/launch.sh
-exec --no-startup-id ~/.config/i3/scripts/screen.sh
 exec --no-startup-id gammy
 exec --no-startup-id xcompmgr -c
 
@@ -49,7 +48,6 @@ for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
 for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
 for_window [class="Yad" instance="yad"] floating enable
 for_window [class="Pamac-manager"] floating enable
-for_window [class="tt-game"] floating enable
 for_window [class="Qalculate-gtk"] floating enable
 
 # ------ Shortcuts settings ------ #
@@ -92,7 +90,7 @@ bindsym $mod+Shift+r restart
 
 # - Quick-start apps - #
 # Terminal
-bindsym $mod+Return exec termite
+bindsym $mod+Return exec alacritty
 
 # - App focus - #
 # Change focus
@@ -176,7 +174,7 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 floating_modifier $mod
 
 # ------ THEMEING ------ #
-set $bg-color            #828188
+set $bg-color            #FFB144
 set $inactive-bg-color   #3B3636
 set $text-color          #C0B1AF
 set $inactive-text-color #3B3636
