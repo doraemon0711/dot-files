@@ -1,8 +1,8 @@
 " ---------------------------------------------------------------
 " Maintainer: Tobias Johansson (TobiasDev)
 " Repo: https://github.com/TobiasDev/dot-files
-" Version: 0.5.8
-" Changes: Adding more keyboard shortcuts
+" Version: 0.6.0
+" Changes: Replacing NERDTree with ChadTree
 " Location, Windows: C:\Users\USERNAME\AppData\Local\nvim\
 " Location, Linux: .config\nvim\
 "
@@ -13,7 +13,7 @@
 " ---------------------------------------------------------------
 " HOST - Windows 10 specific
 " ---------------------------------------------------------------
-" let g:python3_host_prog = 'C:\Python38\python.exe'
+let g:python3_host_prog = 'C:\Python38\python.exe'
 
 " ---------------------------------------------------------------
 " PLUGINS
@@ -40,6 +40,7 @@ call plug#begin('~/.nvim/plugged')
     " Vim helpers
     " ---
     Plug 'vim-airline/vim-airline'
+    Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
     " ---
     " Faster search and find
     " ---
@@ -199,15 +200,9 @@ let g:fzf_action = {
 inoremap <C-f> <esc>:Lines<CR>
 
 " ---
-" VimWiki
+" CHADTree
 " ---
-nnoremap <M-t> <esc>:VimwikiToggleListItem<CR>
-
-" ---
-" NERDTree
-" ---
-nnoremap <C-b> <esc>:NERDTreeToggle<CR>
-nnoremap <C-v> <esc>:NERDTreeFind<CR>
+nnoremap <C-b> <esc>:CHADopen<CR>
 
 " ---
 " COC
