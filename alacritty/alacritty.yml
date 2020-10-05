@@ -2,6 +2,9 @@
 # Original file: https://github.com/alacritty/alacritty/
 # Maintainer: Tobias Johansson (TobiasDev)
 # Version: 0.1
+# Windows config lives: %APPDATA%/alacritty/alacritty.yml
+# Linux config lives: .config/alacritty/alacritty.yml
+
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables

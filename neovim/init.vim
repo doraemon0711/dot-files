@@ -3,6 +3,8 @@
 " Repo: https://github.com/TobiasDev/dot-files
 " Version: 0.5.8
 " Changes: Adding more keyboard shortcuts
+" Location, Windows: C:\Users\USERNAME\AppData\Local\nvim\
+" Location, Linux: .config\nvim\
 "
 " Commands to remember
 " :ls - Shows all the last buffers (for if you accidently close one)
@@ -37,7 +39,6 @@ call plug#begin('~/.nvim/plugged')
     " ---
     " Vim helpers
     " ---
-    Plug 'scrooloose/nerdtree'
     Plug 'vim-airline/vim-airline'
     " ---
     " Faster search and find
@@ -68,12 +69,7 @@ call plug#begin('~/.nvim/plugged')
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'tpope/vim-commentary'
     Plug 'townk/vim-autoclose'
-    " Plug 'rstacruz/vim-closer'
     Plug 'godlygeek/tabular'
-    " ---
-    " Planning plugins
-    " ---
-    Plug 'vimwiki/vimwiki'
 call plug#end()
 
 " ---------------------------------------------------------------
