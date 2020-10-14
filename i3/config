@@ -23,9 +23,10 @@ workspace_layout default
 
 # ------ Autostart ------ #
 exec --no-startup-id nextcloud
-exec --no-startup-id ~/.config/polybar/launch.sh
 exec --no-startup-id gammy
+exec --no-startup-id ~/.config/polybar/launch.sh
 exec --no-startup-id xcompmgr -c
+exec --no-startup-id logid
 
 # Get auth work with polkit-gnome
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
