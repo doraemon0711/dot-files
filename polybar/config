@@ -40,7 +40,7 @@
     modules-left                          = workspaces
     modules-right                         = volume separator time separator date
 
-    font-0                                = Fira Code:size                       = 11;2.5
+    font-0                                = Fira Code:size                       = 10;2.5
     fixed-center                          = true
 
 [module/workspaces]
