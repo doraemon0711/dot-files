@@ -1,13 +1,10 @@
 " ---------------------------------------------------------------
 " Maintainer: Tobias Johansson (TobiasDev)
 " Repo: https://github.com/TobiasDev/dot-files
-" Version: 0.6.0
-" Changes: Replacing NERDTree with ChadTree
+" Version: 0.7
+" Changes: Cleaning up and added new plugins
 " Location, Windows: C:\Users\USERNAME\AppData\Local\nvim\
 " Location, Linux: .config\nvim\
-"
-" Commands to remember
-" :ls - Shows all the last buffers (for if you accidently close one)
 " ---------------------------------------------------------------
 
 " ---------------------------------------------------------------
@@ -68,6 +65,7 @@ call plug#begin('~/.nvim/plugged')
     " Development plugins
     " ---
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'tpope/vim-surround'
     Plug 'tpope/vim-commentary'
     Plug 'townk/vim-autoclose'
     Plug 'godlygeek/tabular'
@@ -83,6 +81,7 @@ set           cursorline
 set           number
 set           noshowmode
 set           nobackup
+set           updatetime=300
 "Change TAB to be similar to VS Code since most other people I work with use that
 set           tabstop=4
 set           shiftwidth=4
@@ -133,7 +132,7 @@ nnoremap <c-n> :call OpenTerminal()<CR>
 " ALL MODES
 " -----------------------------
 " Save
-noremap <C-s> <esc>:w<enter>
+noremap <C-s> <esc>:w!<enter>
 
 " -----------------------------
 " NORMAL MODE
@@ -166,8 +165,10 @@ nnoremap <m-c> :Commentary<cr>
 " INSERT MODE
 " -----------------------------
 " Holding down CTRL and using hjkl make the cursor move like in Normal mode
+inoremap <C-h> <left>
 inoremap <C-j> <down>
 inoremap <C-k> <up>
+inoremap <C-l> <right>
 
 " Add CTRL+V to paste from OS Clipboard
 inoremap <C-v> <esc>"+pi
@@ -183,8 +184,8 @@ inoremap <m-k> <esc>ddkPi
 vnoremap <C-c> "+y
 vnoremap <C-v> "+p
 
-vnoremap <C-j> 15j
-vnoremap <C-k> 15k
+vnoremap <C-j> 10j
+vnoremap <C-k> 10k
 
 " -----------------------------
 " Plugin-specific
@@ -207,6 +208,7 @@ nnoremap <C-b> <esc>:CHADopen<CR>
 " ---
 " COC
 " ---
+
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
