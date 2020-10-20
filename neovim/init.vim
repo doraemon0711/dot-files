@@ -1,8 +1,8 @@
 " ---------------------------------------------------------------
 " Maintainer: Tobias Johansson (TobiasDev)
 " Repo: https://github.com/TobiasDev/dot-files
-" Version: 0.7
-" Changes: Cleaning up and added new plugins
+" Version: 0.7.1
+" Changes: Back to NERDTree
 " Location, Windows: C:\Users\USERNAME\AppData\Local\nvim\
 " Location, Linux: .config\nvim\
 " ---------------------------------------------------------------
@@ -37,7 +37,7 @@ call plug#begin('~/.nvim/plugged')
     " Vim helpers
     " ---
     Plug 'vim-airline/vim-airline'
-    Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
+    Plug 'scrooloose/nerdtree'
     " ---
     " Faster search and find
     " ---
@@ -201,9 +201,10 @@ let g:fzf_action = {
 inoremap <C-f> <esc>:Lines<CR>
 
 " ---
-" CHADTree
+" NERDTree
 " ---
-nnoremap <C-b> <esc>:CHADopen<CR>
+nnoremap <C-b> <esc>:NERDTreeToggle<CR>
+nnoremap <C-v> <esc>:NERDTreeFind<CR>
 
 " ---
 " COC
