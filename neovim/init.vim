@@ -114,6 +114,9 @@ let g:airline_section_z             = airline#section#create(['%l', '/', '%L'])
 " ---------------------------------------------------------------
 " Keyboard shortcuts
 " ---------------------------------------------------------------
+" Remap local-leader
+let maplocalleader = "\<Space>"
+
 " Opens up terminal at the bottom
 set splitbelow
 " 1. Turn terminal to normal mode with escape
