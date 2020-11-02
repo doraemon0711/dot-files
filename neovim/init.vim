@@ -1,8 +1,8 @@
 " ---------------------------------------------------------------
 " Maintainer: Tobias Johansson (TobiasDev)
 " Repo: https://github.com/TobiasDev/dot-files
-" Version: 0.7.1
-" Changes: Back to NERDTree
+" Version: 0.7.2
+" Changes: Cleaning up and removing some plugins
 " Location, Windows: C:\Users\USERNAME\AppData\Local\nvim\
 " Location, Linux: .config\nvim\
 " ---------------------------------------------------------------
@@ -75,18 +75,19 @@ call plug#end()
 " CONFIGURATION
 " ---------------------------------------------------------------
 syntax        enable
-colorscheme   relaxed-dark
+colorscheme   relaxed-solarized
 set           encoding=utf-8
 set           cursorline
+set           signcolumn=yes
 set           number
 set           noshowmode
 set           nobackup
 set           updatetime=300
-"Change TAB to be similar to VS Code since most other people I work with use that
+"Change TAB to be similar to VS Code
 set           tabstop=4
 set           shiftwidth=4
 set           expandtab
-"If possible the terminal will use the colors from "Relaxed Dark"
+"If possible the terminal will use choosen theme colors
 set           termguicolors
 
 " -----------------------------
@@ -95,7 +96,7 @@ set           termguicolors
 " ---
 " plasticboy/vim-markdown
 " ---
-let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_folding_disabled=1
 " ---
 " neoclide/coc.nvim
 " ---
@@ -114,9 +115,6 @@ let g:airline_section_z             = airline#section#create(['%l', '/', '%L'])
 " ---------------------------------------------------------------
 " Keyboard shortcuts
 " ---------------------------------------------------------------
-" Remap local-leader
-let maplocalleader = "\<Space>"
-
 " Opens up terminal at the bottom
 set splitbelow
 " 1. Turn terminal to normal mode with escape
@@ -145,10 +143,15 @@ nnoremap <C-h> <esc>0
 nnoremap <C-l> <esc>$
 nnoremap <C-j> <esc>10j
 nnoremap <C-k> <esc>10k
+nnoremap <tab> <esc><c-w>w
 
 " Holding down ALT and using jk moves the full line up or down
 nnoremap <m-j> <esc>ddp
 nnoremap <m-k> <esc>ddkP
+
+" Move split left or right with ALT+hl
+nnoremap <m-h> <esc><c-w>R
+nnoremap <m-l> <esc><c-w>r
 
 " Add so paste comes from the OS Clipboard
 nnoremap <C-v> <esc>"+p
@@ -156,10 +159,8 @@ nnoremap <C-v> <esc>"+p
 " Close Nvim
 nnoremap <m-q> <esc>:q<cr>
 
+" Create a new split
 nnoremap <m-s> <esc>:vs<cr>
-" Jump between splits with ALT+hl
-nnoremap <m-h> <c-w><c-h>
-nnoremap <m-l> <c-w><c-l>
 
 " Quick comment out
 nnoremap <m-c> :Commentary<cr>
