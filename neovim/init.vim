@@ -105,7 +105,7 @@ let g:coc_global_extensions         = ['coc-emmet', 'coc-css', 'coc-html', 'coc-
 " ---
 " vim-airline/vim-airline
 " ---
-let g:airline_theme                 = 'airline_relaxed_dark'
+let g:airline_theme                 = 'airline_relaxed_solarized'
 let g:airline_section_a             = airline#section#create(['mode'])
 let g:airline_section_b             = airline#section#create(['hunks', 'branch'])
 let g:airline_section_x             = airline#section#create([])
