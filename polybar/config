@@ -7,6 +7,15 @@
     fg-error                              = #A02C2C
     fg-warning                            = #FFB144
     fg-success                            = #2C7C43
+; ----- SOLARIZED COLORS -----
+    ;bg-main                               = #001b22
+    ;bg-secondary                          = #002b36
+    ;bg-selection                          = #4A3C3B
+    ;fg-main                               = #C0B1AF
+    ;fg-highlight                          = #F2F3E2
+    ;fg-error                              = #af2500
+    ;fg-warning                            = #e27111
+    ;fg-success                            = #35d063
 
 [bar/mybar]
     height                                = 24
