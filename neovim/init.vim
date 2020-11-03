@@ -1,13 +1,13 @@
 " ---------------------------------------------------------------
 " Maintainer: Tobias Johansson (TobiasDev)
 " Repo: https://github.com/TobiasDev/dot-files
-" Version: 0.7.2
-" Changes: Cleaning up and removing some plugins
+" Version: 0.7.3
+" Changes: Updated plugins (read added and removed some)
 " Location, Windows: C:\Users\USERNAME\AppData\Local\nvim\
 " Location, Linux: .config\nvim\
 " ---------------------------------------------------------------
 
-" ---------------------------------------------------------------
+" ------------- colors--------------------------------------------------
 " HOST - Windows 10 specific
 " ---------------------------------------------------------------
 " let g:python3_host_prog = 'C:\Python38\python.exe'
@@ -59,7 +59,6 @@ call plug#begin('~/.nvim/plugged')
     " ---
     " Web-Development plugins
     " ---
-    Plug 'ap/vim-css-color'
     Plug 'alvan/vim-closetag'
     " ---
     " Development plugins
