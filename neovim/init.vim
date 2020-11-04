@@ -133,8 +133,8 @@ let g:fzf_colors =
 nnoremap <C-s> <esc>:w!<enter>
 
 " Movement changes
-nnoremap <C-h> <esc>0
-nnoremap <C-l> <esc>$
+nnoremap <C-h> <esc>10h
+nnoremap <C-l> <esc>10l
 nnoremap <C-j> <esc>10j
 nnoremap <C-k> <esc>10k
 nnoremap <tab> <esc><c-w>w
