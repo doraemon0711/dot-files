@@ -1,10 +1,13 @@
 " ---------------------------------------------------------------
 " Maintainer: Tobias Johansson (TobiasDev)
 " Repo: https://github.com/TobiasDev/dot-files
-" Version: 0.8.0
-" Changes: Improving my workflow with some FZF changes
+" Version: 0.8.1
+" Changes: A lot of keyboard shortcut changes
 " Location, Windows: C:\Users\USERNAME\AppData\Local\nvim\
 " Location, Linux: .config\nvim\
+" TODO
+" - Once I'm on neovim 0.5, install this https://github.com/nvim-lua/telescope.nvim
+" - https://github.com/norcalli/snippets.nvim
 " ---------------------------------------------------------------
 
 " ---------------------------------------------------------------
@@ -68,6 +71,7 @@ call plug#begin('~/.nvim/plugged')
     Plug 'tpope/vim-commentary'
     Plug 'townk/vim-autoclose'
     Plug 'godlygeek/tabular'
+    Plug 'norcalli/nvim-colorizer.lua'
 call plug#end()
 
 " ---------------------------------------------------------------
@@ -75,22 +79,20 @@ call plug#end()
 " ---------------------------------------------------------------
 syntax        enable
 colorscheme   relaxed-solarized
+set           termguicolors
+set           updatetime=300
 set           encoding=utf-8
-set           cursorline
 set           signcolumn=yes
 set           number
+set           wrap
+set           linebreak
+set           cursorline
 set           noshowmode
 set           nobackup
-set           updatetime=300
 "Change TAB to be similar to VS Code
 set           tabstop=4
 set           shiftwidth=4
 set           expandtab
-"If possible the terminal will use choosen theme colors
-set           termguicolors
-
-set           wrap
-set           linebreak
 
 " -----------------------------
 " PLUGIN SPECIFIC CONFIGURATION
@@ -99,6 +101,7 @@ set           linebreak
 " plasticboy/vim-markdown
 " ---
 let g:vim_markdown_folding_disabled=1
+
 " ---
 " neoclide/coc.nvim
 " ---
@@ -114,6 +117,9 @@ let g:airline_section_x             = airline#section#create([])
 let g:airline_section_y             = airline#section#create(['%Y'])
 let g:airline_section_z             = airline#section#create(['%l', '/', '%L'])
 
+" ---
+" junegunn/fzf
+" ---
 " Currently not working in Windows
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Menu'],
@@ -125,39 +131,44 @@ let g:fzf_colors =
 " -----------------------------
 " ALL MODES
 " -----------------------------
-
+" // Currently I have no shortcuts added to work in all modes
 " -----------------------------
 " NORMAL MODE
 " -----------------------------
-" Save
 nnoremap <C-s> <esc>:w!<enter>
+nnoremap <C-d> <esc>daw
 
 " Movement changes
-nnoremap <C-h> <esc>10h
-nnoremap <C-l> <esc>10l
-nnoremap <C-j> <esc>10j
-nnoremap <C-k> <esc>10k
-nnoremap <tab> <esc><c-w>w
+" nnoremap <C-h> <esc>10h
+" nnoremap <C-l> <esc>10l
+" nnoremap <C-j> <esc>10j
+" nnoremap <C-k> <esc>10k
+
+" Jump between splits
+nnoremap <Tab> <esc><C-w>w
+nnoremap <S-h> <esc><C-w>h
+nnoremap <S-l> <esc><C-w>l
+
+" Jump between diffs
+nnoremap <S-j> <esc>]c
+nnoremap <S-k> <esc>[c
 
 " Holding down ALT and using jk moves the full line up or down
-nnoremap <m-j> <esc>ddp
-nnoremap <m-k> <esc>ddkP
+nnoremap <M-j> <esc>ddp
+nnoremap <M-k> <esc>ddkP
 
 " Move split left or right with ALT+hl
-nnoremap <m-h> <esc><c-w>R
-nnoremap <m-l> <esc><c-w>r
-
-" Add so paste comes from the OS Clipboard
-nnoremap <C-v> <esc>"+p
+nnoremap <M-h> <esc><c-w>R
+nnoremap <M-l> <esc><c-w>r
 
 " Close Nvim
-nnoremap <m-q> <esc>:q<cr>
+nnoremap <M-q> <esc>:q<cr>
 
 " Create a new split
-nnoremap <m-s> <esc>:vs<cr>
+nnoremap <M-s> <esc>:vs<cr>
 
 " Quick comment out
-nnoremap <m-c> :Commentary<cr>
+nnoremap <M-c> :Commentary<cr>
 
 " -----------------------------
 " INSERT MODE
@@ -172,22 +183,30 @@ inoremap <C-l> <right>
 inoremap <C-v> <esc>"+pi
 
 " Holding down ALT and using jk moves the full line up or down
-inoremap <m-j> <esc>ddpi
-inoremap <m-k> <esc>ddkPi
+inoremap <M-j> <esc>ddpi
+inoremap <M-k> <esc>ddkPi
 
 " -----------------------------
 " VISUAL MODE
 " -----------------------------
 " Adds the "standard" copy and paste behaviour
 vnoremap <C-c> "+y
-vnoremap <C-v> "+p
 
+" Movement changes
+vnoremap <C-h> 10h
+vnoremap <C-l> 10l
 vnoremap <C-j> 10j
 vnoremap <C-k> 10k
 
+vnoremap <M-c> :Commentary<cr>
 " -----------------------------
 " Plugin-specific
 " -----------------------------
+" ---
+" norcalli/nvim-colorizer
+" ---
+nnoremap <S-c> <esc>:ColorizerToggle<CR>
+
 " ---
 " FZF
 " ---
@@ -202,7 +221,7 @@ let g:fzf_action = {
 " NERDTree
 " ---
 nnoremap <C-b> <esc>:NERDTreeToggle<CR>
-nnoremap <C-v> <esc>:NERDTreeFind<CR>
+" nnoremap <C-v> <esc>:NERDTreeFind<CR>
 
 " ---
 " COC
