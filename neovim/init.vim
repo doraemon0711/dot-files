@@ -1,13 +1,13 @@
 " ---------------------------------------------------------------
 " Maintainer: Tobias Johansson (TobiasDev)
 " Repo: https://github.com/TobiasDev/dot-files
-" Version: 0.7.3
-" Changes: Updated plugins (read added and removed some)
+" Version: 0.8.0
+" Changes: Improving my workflow with some FZF changes
 " Location, Windows: C:\Users\USERNAME\AppData\Local\nvim\
 " Location, Linux: .config\nvim\
 " ---------------------------------------------------------------
 
-" ------------- colors--------------------------------------------------
+" ---------------------------------------------------------------
 " HOST - Windows 10 specific
 " ---------------------------------------------------------------
 " let g:python3_host_prog = 'C:\Python38\python.exe'
@@ -89,6 +89,9 @@ set           expandtab
 "If possible the terminal will use choosen theme colors
 set           termguicolors
 
+set           wrap
+set           linebreak
+
 " -----------------------------
 " PLUGIN SPECIFIC CONFIGURATION
 " -----------------------------
@@ -111,32 +114,24 @@ let g:airline_section_x             = airline#section#create([])
 let g:airline_section_y             = airline#section#create(['%Y'])
 let g:airline_section_z             = airline#section#create(['%l', '/', '%L'])
 
+" Currently not working in Windows
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Menu'],
+  \ 'bg':      ['bg', 'Menu'] }
+
 " ---------------------------------------------------------------
 " Keyboard shortcuts
 " ---------------------------------------------------------------
-" Opens up terminal at the bottom
-set splitbelow
-" 1. Turn terminal to normal mode with escape
-tnoremap <Esc> <C-\><C-n>
-" 2. Start terminal in insert mode
-au BufEnter * if &buftype == 'terminal' | :startinsert | endif
-
-function! OpenTerminal()
-    split term://bash
-    resize 10
-endfunction
-
-nnoremap <c-n> :call OpenTerminal()<CR>
-
 " -----------------------------
 " ALL MODES
 " -----------------------------
-" Save
-noremap <C-s> <esc>:w!<enter>
 
 " -----------------------------
 " NORMAL MODE
 " -----------------------------
+" Save
+nnoremap <C-s> <esc>:w!<enter>
+
 " Movement changes
 nnoremap <C-h> <esc>0
 nnoremap <C-l> <esc>$
@@ -196,12 +191,12 @@ vnoremap <C-k> 10k
 " ---
 " FZF
 " ---
+noremap <C-f> <esc>:Lines<CR>
+noremap <C-o> <esc>:History<CR>
 nnoremap <C-p> <esc>:Files<CR>
 let g:fzf_action = {
-    \ 'ctrl-s': 'split',
     \ 'ctrl-v': 'vsplit'
 \}
-inoremap <C-f> <esc>:Lines<CR>
 
 " ---
 " NERDTree
