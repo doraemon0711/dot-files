@@ -42,7 +42,7 @@ call plug#begin('~/.nvim/plugged')
     " ---
     " Vim helpers
     " ---
-    Plug 'vim-airline/vim-airline'
+    " Plug 'vim-airline/vim-airline'
     " ---
     " Better git in VIM
     " ---
@@ -87,9 +87,14 @@ set           expandtab
 " ---
 " vim-airline/vim-airline
 " ---
+" let g:airline_left_sep='>'
+" let g:airline_right_sep='<'
+" let g:airline_detect_modified=1
+
 " let g:airline_theme                 = 'airline_relaxed_solarized'
 " let g:airline_section_a             = airline#section#create(['mode'])
 " let g:airline_section_b             = airline#section#create(['hunks', 'branch'])
+" let g:airline_section_c             = airline#section#create(['%t'])
 " let g:airline_section_x             = airline#section#create([])
 " let g:airline_section_y             = airline#section#create(['%Y'])
 " let g:airline_section_z             = airline#section#create(['%l', '/', '%L'])
