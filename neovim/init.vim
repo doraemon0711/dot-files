@@ -42,7 +42,7 @@ call plug#begin('~/.nvim/plugged')
     " ---
     " Vim helpers
     " ---
-    " Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline'
     " ---
     " Better git in VIM
     " ---
@@ -70,6 +70,8 @@ syntax        enable
 colorscheme   relaxed-solarized
 set           termguicolors
 set           encoding=utf-8
+set           fileencoding=utf-8
+set           termencoding=utf-8
 set           signcolumn=yes
 set           number
 set           wrap
@@ -92,12 +94,12 @@ set           expandtab
 " let g:airline_detect_modified=1
 
 " let g:airline_theme                 = 'airline_relaxed_solarized'
-" let g:airline_section_a             = airline#section#create(['mode'])
-" let g:airline_section_b             = airline#section#create(['hunks', 'branch'])
-" let g:airline_section_c             = airline#section#create(['%t'])
-" let g:airline_section_x             = airline#section#create([])
-" let g:airline_section_y             = airline#section#create(['%Y'])
-" let g:airline_section_z             = airline#section#create(['%l', '/', '%L'])
+let g:airline_section_a             = airline#section#create(['mode'])
+let g:airline_section_b             = airline#section#create(['hunks', 'branch'])
+let g:airline_section_c             = airline#section#create(['%F'])
+let g:airline_section_x             = airline#section#create([])
+let g:airline_section_y             = airline#section#create(['%Y'])
+let g:airline_section_z             = airline#section#create(['%l', '/', '%L'])
 
 " ---------------------------------------------------------------
 " Keyboard shortcuts
@@ -122,6 +124,11 @@ nnoremap <C-k> <esc>10k
 " Jump between splits easy
 nnoremap <S-h> <esc><C-w>h
 nnoremap <S-l> <esc><C-w>l
+
+nnoremap <Leader>h <esc><C-w>R
+nnoremap <Leader>l <esc><C-w>r
+nnoremap <Leader>j <esc><C-w>10>
+nnoremap <Leader>k <esc><C-w>10<
 
 " Holding down ALT and using jk moves the full line up or down
 nnoremap <M-j> <esc>ddp
