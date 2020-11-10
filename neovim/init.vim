@@ -2,8 +2,8 @@
 " Maintainer: Tobias Johansson (TobiasDev)
 " Repo: https://github.com/TobiasDev/dot-files
 " Nvim version: 0.5
-" Version: 0.1.0
-" Changes: "Reset" my config file for moving over to Neovim 0.5
+" Version: 0.2.0
+" Changes: Turned COC back on since nvim-lsp wasn't really working for me yet
 " Location, Windows: C:\Users\USERNAME\AppData\Local\nvim\
 " Location, Linux: .config\nvim\
 " TODO
@@ -40,6 +40,10 @@ endif
 " Specify a directory for plugins
 call plug#begin('~/.nvim/plugged')
     " ---
+    " Language server
+    " ---
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    " ---
     " Vim helpers
     " ---
     Plug 'vim-airline/vim-airline'
@@ -73,6 +77,7 @@ set           encoding=utf-8
 set           fileencoding=utf-8
 set           termencoding=utf-8
 set           signcolumn=yes
+set           updatetime=300
 set           number
 set           wrap
 set           linebreak
@@ -85,15 +90,15 @@ set           expandtab
 " -----------------------------
 " PLUGIN SPECIFIC CONFIGURATION
 " -----------------------------
+" ---
+" neoclide/coc.nvim
+" ---
+let g:coc_global_extensions         = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver']
 
 " ---
 " vim-airline/vim-airline
 " ---
-" let g:airline_left_sep='>'
-" let g:airline_right_sep='<'
-" let g:airline_detect_modified=1
-
-" let g:airline_theme                 = 'airline_relaxed_solarized'
+let g:airline_theme                 = 'airline_relaxed_solarized'
 let g:airline_section_a             = airline#section#create(['mode'])
 let g:airline_section_b             = airline#section#create(['hunks', 'branch'])
 let g:airline_section_c             = airline#section#create(['%F'])
@@ -177,6 +182,36 @@ vnoremap <Leader>c :Commentary<cr>
 " -----------------------------
 " Plugin-specific
 " -----------------------------
+" ---
+" neoclide/coc.nvim
+" ---
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
+if exists('*complete_info')
+    inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+    inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+
 " ---
 " norcalli/nvim-colorizer
 " ---
