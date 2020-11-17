@@ -1,5 +1,13 @@
 {
     "diagnostic.errorSign": "XX",
     "diagnostic.warningSign": "!?",
-    "diagnostic.infoSign": ">>"
+    "diagnostic.infoSign": ">>",
+
+    "languageserver": {
+        "godot": {
+            "host": "127.0.0.1",
+            "filetypes": ["gd", "gdscript"],
+            "port": 6008
+            }
+    }
 }
