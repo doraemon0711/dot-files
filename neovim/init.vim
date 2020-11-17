@@ -65,6 +65,10 @@ call plug#begin('~/.nvim/plugged')
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-commentary'
     Plug 'townk/vim-autoclose'
+    " ---
+    " Markdown
+    " ---
+    Plug 'plasticboy/vim-markdown'
 call plug#end()
 
 " ---------------------------------------------------------------
@@ -89,7 +93,12 @@ set           expandtab
 
 " -----------------------------
 " PLUGIN SPECIFIC CONFIGURATION
-" -----------------------------
+"------------------------------
+" ---
+" plasticboy/vim-markdown
+" ---
+let g:vim_markdown_folding_disabled = 1
+
 " ---
 " neoclide/coc.nvim
 " ---
