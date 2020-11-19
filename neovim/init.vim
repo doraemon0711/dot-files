@@ -40,6 +40,10 @@ endif
 " Specify a directory for plugins
 call plug#begin('~/.nvim/plugged')
     " ---
+    " File-explorer
+    " ---
+    Plug 'scrooloose/nerdtree'
+    " ---
     " Language server
     " ---
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -232,3 +236,9 @@ nmap <silent> gd <Plug>(coc-definition)
 nnoremap <C-g> <esc>:Lines<CR>
 nnoremap <C-o> <esc>:History<CR>
 nnoremap <C-p> <esc>:Files<CR>
+
+" ---
+" NERDTree
+" ---
+nnoremap <Leader>b <esc>:NERDTreeToggle<CR>
+nnoremap <Leader>v <esc>:NERDTreeFind<CR>
