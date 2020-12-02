@@ -1,7 +1,8 @@
-# Configuration for Alacritty, the GPU enhanced terminal emulator.
+# Configuration for Alacritty
 # Original file: https://github.com/alacritty/alacritty/
-# Maintainer: Tobias Johansson (TobiasDev)
-# Version: 0.1
+# Maintainer of this file: Tobias Johansson (TobiasDev)
+# Version: 0.2
+# Changes: Small tweaks here and there to the file and removed a lot of things I don't use
 # Windows config lives: %APPDATA%/alacritty/alacritty.yml
 # Linux config lives: .config/alacritty/alacritty.yml
 
@@ -19,17 +20,11 @@
 
 window:
   # Window dimensions (changes require restart)
-  #
   # Specified in number of columns/lines, not pixels.
   # If both are `0`, this setting is ignored.
   #dimensions:
   #  columns: 0
   #  lines: 0
-
-  # If the position is not set, the window manager will handle the placement.
-  #position:
-  #  x: 0
-  #  y: 0
 
   # Window padding (changes require restart)
   # Blank space added around the window in pixels. This padding is scaled
@@ -42,23 +37,16 @@ window:
   dynamic_padding: false
 
   # Window decorations
-  # Values for `decorations`:
-  #     - full: Borders and title bar
-  #     - none: Neither borders nor title bar
   decorations: full
 
   # Startup Mode (changes require restart)
-  # Values for `startup_mode`:
-  #   - Windowed
-  #   - Maximized
-  #   - Fullscreen
   startup_mode: Windowed
 
   # Window title
-  #title: Alacritty
+  title: Alacritty
 
   # Allow terminal applications to change Alacritty's window title.
-  #dynamic_title: true
+  dynamic_title: true
 
   # Window class (Linux/BSD only):
   #class:
@@ -83,24 +71,9 @@ window:
 font:
   normal:
     family: 'Fira Code'
-    #style: Regular
-
-  # If the family is not specified, it will fall back to the
-  # value specified for the normal font.
-  #bold:
-    #family: monospace
-    #style: Bold
-
-  #italic:
-    #family: monospace
-    #style: Italic
-
-  #bold_italic:
-    #family: monospace
-    #style: Bold Italic
 
   # Point size
-  size: 9.0
+  size: 11.0
 
   #offset:
   #  x: 0
@@ -110,10 +83,7 @@ font:
   #  x: 0
   #  y: 0
 
-# If `true`, bold text is drawn using the bright color variants.
-#draw_bold_text_with_bright_colors: false
-
-# Changed to follow "Relaxed-Dark"
+# Changed to follow "Relaxed-Solarized"
 colors:
   primary:
     background: '#001b22'
@@ -194,8 +164,6 @@ colors:
     white:   '#F2F3E2'
 
   # Dim colors
-  # If the dim colors are not set, they will be calculated automatically based
-  # on the `normal` colors.
   #dim:
   #  black:   '#131415'
   #  red:     '#864343'
@@ -213,49 +181,7 @@ colors:
   #   `- { index: 16, color: '#ff00ff' }`
   #indexed_colors: []
 
-# Bell
-# The bell is rung every time the BEL control character is received.
-#bell:
-  # Visual Bell Animation
-  #
-  # Animation effect for flashing the screen when the visual bell is rung.
-  #
-  # Values for `animation`:
-  #   - Ease
-  #   - EaseOut
-  #   - EaseOutSine
-  #   - EaseOutQuad
-  #   - EaseOutCubic
-  #   - EaseOutQuart
-  #   - EaseOutQuint
-  #   - EaseOutExpo
-  #   - EaseOutCirc
-  #   - Linear
-  #animation: EaseOutExpo
-
-  # Duration of the visual bell flash. A `duration` of `0` will disable the
-  # visual bell animation.
-  #duration: 0
-
-  # Visual bell animation color.
-  #color: '#ffffff'
-
-  # Bell Command
-  # This program is executed whenever the bell is rung.
-  #
-  # When set to `command: None`, no command will be executed.
-  #
-  # Example:
-  #   command:
-  #     program: notify-send
-  #     args: ["Hello, World!"]
-  #
-  #command: None
-
-# Background opacity
-# Window opacity as a floating point number from `0.0` to `1.0`.
-# The value `0.0` is completely transparent and `1.0` is opaque.
-#background_opacity: 1.0
+background_opacity: 1.0
 
 #selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
@@ -263,26 +189,15 @@ colors:
   # When set to `true`, selected text will be copied to the primary clipboard.
   #save_to_clipboard: false
 
-#cursor:
-  # Cursor style
-  # Values for `style`:
-  #   - ▇ Block
-  #   - _ Underline
-  #   - | Beam
-  #style: Block
+cursor:
+  style: Block
+  vi_mode_style: None
 
-  # Vi mode cursor style
-  # If the vi mode cursor style is `None` or not specified, it will fall back to
-  # the style of the active value of the normal cursor.
-  #vi_mode_style: None
+  # If this is `true`, the cursor will be rendered as a hollow box if the windows is not focused
+  unfocused_hollow: true
 
-  # If this is `true`, the cursor will be rendered as a hollow box when the
-  # window is not focused.
-  #unfocused_hollow: true
-
-  # Thickness of the cursor relative to the cell width as floating point number
-  # from `0.0` to `1.0`.
-  #thickness: 0.15
+  # Thickness of the cursor relative to the cell width as floating point number (0.0 - 1.0)
+  thickness: 0.15
 
 # Live config reload (changes require restart)
 live_config_reload: true
@@ -316,16 +231,11 @@ live_config_reload: true
 # Send ESC (\x1b) before characters when alt is pressed.
 #alt_send_esc: true
 
-#mouse:
+mouse:
   # Click settings
-  # The `double_click` and `triple_click` settings control the time
-  # alacritty should wait for accepting multiple clicks as one double
-  # or triple click.
-  #double_click: { threshold: 300 }
-  #triple_click: { threshold: 300 }
-
-  # If this is `true`, the cursor is temporarily hidden when typing.
-  #hide_when_typing: false
+  double_click: { threshold: 300 }
+  triple_click: { threshold: 300 }
+  hide_when_typing: false
 
   #url:
     # URL launcher
