@@ -2,8 +2,8 @@
 " Maintainer: Tobias Johansson (TobiasDev)
 " Repo: https://github.com/TobiasDev/dot-files
 " Nvim version: 0.5
-" Version: 0.2.0
-" Changes: Turned COC back on since nvim-lsp wasn't really working for me yet
+" Version: 0.2.2
+" Changes: Adding VimWiki
 " Location, Windows: C:\Users\USERNAME\AppData\Local\nvim\
 " Location, Linux: .config\nvim\
 " TODO
@@ -16,7 +16,7 @@
 " ---------------------------------------------------------------
 " HOST - Windows 10 specific
 " ---------------------------------------------------------------
-" let g:python3_host_prog = 'C:\Python38\python.exe'
+let g:python3_host_prog = 'C:\Python38\python.exe'
 
 " ---------------------------------------------------------------
 " PLUGINS
@@ -62,7 +62,7 @@ call plug#begin('~/.nvim/plugged')
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
     " ---
-    " Development plugins
+    " Development
     " ---
     Plug 'godlygeek/tabular'
     Plug 'norcalli/nvim-colorizer.lua'
@@ -70,9 +70,10 @@ call plug#begin('~/.nvim/plugged')
     Plug 'tpope/vim-commentary'
     Plug 'townk/vim-autoclose'
     " ---
-    " Markdown
+    " Writing
     " ---
     Plug 'plasticboy/vim-markdown'
+    Plug 'vimwiki/vimwiki'
 call plug#end()
 
 " ---------------------------------------------------------------
@@ -131,8 +132,6 @@ noremap <Space> <Nop>
 " -----------------------------
 " NORMAL MODE
 " -----------------------------
-nnoremap <C-s> <esc>:w!<enter>
-
 " Movement changes
 nnoremap <C-h> <esc>10h
 nnoremap <C-l> <esc>10l
