@@ -241,3 +241,9 @@ nnoremap <C-p> <esc>:Files<CR>
 " ---
 nnoremap <Leader>b <esc>:NERDTreeToggle<CR>
 nnoremap <Leader>v <esc>:NERDTreeFind<CR>
+
+
+" ---
+" VimWiki
+" ---
+nnoremap <Leader>d <esc>:VimwikiToggleListItem<CR>
