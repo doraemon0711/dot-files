@@ -46,7 +46,8 @@ call plug#begin('~/.nvim/plugged')
     " ---
     " Language server
     " ---
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    " Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'neovim/nvim-lspconfig'
     " ---
     " Vim helpers
     " ---
@@ -61,6 +62,12 @@ call plug#begin('~/.nvim/plugged')
     " ---
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
+    " ---
+    " Telescope
+    " ---
+    Plug 'nvim-lua/popup.nvim'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
     " ---
     " Development
     " ---
@@ -104,10 +111,16 @@ set           expandtab
 " ---
 let g:vim_markdown_folding_disabled = 1
 
+
+" ---
+" neovim/nvim-lspconfig
+" ---
+
+
 " ---
 " neoclide/coc.nvim
 " ---
-let g:coc_global_extensions         = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver']
+" let g:coc_global_extensions         = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver']
 
 " ---
 " vim-airline/vim-airline
@@ -195,46 +208,23 @@ vnoremap <Leader>c :Commentary<cr>
 " Plugin-specific
 " -----------------------------
 " ---
-" neoclide/coc.nvim
-" ---
-
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-    \ pumvisible() ? "\<C-n>" :
-    \ <SID>check_back_space() ? "\<TAB>" :
-    \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-" position. Coc only does snippet and additional edit on confirm.
-" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
-if exists('*complete_info')
-    inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-    inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-
-" ---
 " norcalli/nvim-colorizer
 " ---
-" nnoremap <S-c> <esc>:ColorizerToggle<CR>
+nnoremap <Leader>c <esc>:ColorizerToggle<CR>
 
 " ---
-" FZF
+" Telescope
 " ---
-nnoremap <C-g> <esc>:Lines<CR>
-nnoremap <C-o> <esc>:History<CR>
-nnoremap <C-p> <esc>:Files<CR>
+nnoremap <C-g> <esc>:Telescope live_grep<CR>
+nnoremap <C-o> <esc>:Telescope oldfiles<CR>
+nnoremap <C-p> <esc>:Telescope find_files<CR>
+
+" ---
+" FZF - TESTING TELESCOPE AS AN ALTERNATIVE
+" ---
+" nnoremap <C-g> <esc>:Lines<CR>
+" nnoremap <C-o> <esc>:History<CR>
+" nnoremap <C-p> <esc>:Files<CR>
 
 " ---
 " NERDTree
@@ -242,8 +232,55 @@ nnoremap <C-p> <esc>:Files<CR>
 nnoremap <Leader>b <esc>:NERDTreeToggle<CR>
 nnoremap <Leader>v <esc>:NERDTreeFind<CR>
 
-
 " ---
 " VimWiki
 " ---
 nnoremap <Leader>d <esc>:VimwikiToggleListItem<CR>
+
+" -----------------------------
+" -----------------------------
+" -----------------------------
+" -----------------------------
+" -----------------------------
+" -----------------------------
+" TEMPORARY REMOVED TO TEST BUILT-IN LSP
+" -----------------------------
+" -----------------------------
+" -----------------------------
+" -----------------------------
+" -----------------------------
+" -----------------------------
+" ---
+" neoclide/coc.nvim
+" ---
+
+" " Use tab for trigger completion with characters ahead and navigate.
+" " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" " other plugin before putting this into your config.
+" inoremap <silent><expr> <TAB>
+"     \ pumvisible() ? "\<C-n>" :
+"     \ <SID>check_back_space() ? "\<TAB>" :
+"     \ coc#refresh()
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+" function! s:check_back_space() abort
+"     let col = col('.') - 1
+"     return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
+
+" " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" " position. Coc only does snippet and additional edit on confirm.
+" " <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
+" if exists('*complete_info')
+"     inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+" else
+"     inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" endif
+
+" " GoTo code navigation.
+" nmap <silent> gd <Plug>(coc-definition)
+" -----------------------------
+" -----------------------------
+" -----------------------------
+" -----------------------------
+" -----------------------------
