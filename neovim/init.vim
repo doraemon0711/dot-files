@@ -16,7 +16,7 @@
 " ---------------------------------------------------------------
 " HOST - Windows 10 specific
 " ---------------------------------------------------------------
-let g:python3_host_prog = 'C:\Python38\python.exe'
+" let g:python3_host_prog = 'C:\Python38\python.exe'
 
 " ---------------------------------------------------------------
 " PLUGINS
@@ -39,6 +39,11 @@ endif
 
 " Specify a directory for plugins
 call plug#begin('~/.nvim/plugged')
+    " ---
+    " Style
+    " ---
+    Plug 'arcticicestudio/nord-vim'
+    Plug 'vim-airline/vim-airline-themes'
     " ---
     " File-explorer
     " ---
@@ -87,7 +92,7 @@ call plug#end()
 " CONFIGURATION
 " ---------------------------------------------------------------
 syntax        enable
-colorscheme   relaxed-solarized
+colorscheme   nord
 set           termguicolors
 set           encoding=utf-8
 set           fileencoding=utf-8
@@ -125,7 +130,7 @@ let g:vim_markdown_folding_disabled = 1
 " ---
 " vim-airline/vim-airline
 " ---
-let g:airline_theme                 = 'airline_relaxed_solarized'
+let g:airline_theme                 = 'nord'
 let g:airline_section_a             = airline#section#create(['mode'])
 let g:airline_section_b             = airline#section#create(['hunks', 'branch'])
 let g:airline_section_c             = airline#section#create(['%F'])
