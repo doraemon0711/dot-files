@@ -2,8 +2,8 @@
 " Maintainer: Tobias Johansson (TobiasDev)
 " Repo: https://github.com/TobiasDev/dot-files
 " Nvim version: 0.5
-" Version: 0.2.2
-" Changes: Adding VimWiki
+" Version: 0.4
+" Changes: Changed to Nord theme and did some other small updates
 " Location, Windows: C:\Users\USERNAME\AppData\Local\nvim\
 " Location, Linux: .config\nvim\
 " TODO
