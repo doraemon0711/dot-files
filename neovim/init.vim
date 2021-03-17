@@ -2,8 +2,8 @@
 " Maintainer: Tobias Johansson (TobiasDev)
 " Repo: https://github.com/TobiasDev/dot-files
 " NeoVim: ^0.5
-" Version: 0.5
-" Changes: Removing plugins not used, cleaning the file
+" Version: 0.6
+" Changes: Switched to GRUVBOX
 " Windows: C:\Users\USERNAME\AppData\Local\nvim\
 " Linux: .config\nvim\
 " ---------------------------------------------------------------
@@ -37,7 +37,7 @@ call plug#begin('~/.nvim/plugged')
     " ---
     " Style
     " ---
-    Plug 'arcticicestudio/nord-vim'
+    Plug 'morhetz/gruvbox'
     Plug 'vim-airline/vim-airline-themes'
     " ---
     " File-explorer
@@ -85,7 +85,8 @@ call plug#end()
 " CONFIGURATION
 " ---------------------------------------------------------------
 syntax        enable
-colorscheme   nord
+colorscheme   gruvbox
+set           background=dark
 set           termguicolors
 set           encoding=utf-8
 set           fileencoding=utf-8
@@ -114,9 +115,14 @@ let g:vim_markdown_folding_disabled = 1
 " ---
 
 " ---
+" morhetz/gruvbox
+" ---
+let g:gruvbox_contrast_dark = 'soft'
+let g:gruvbox_contrast_light = 'soft'
+" ---
 " vim-airline/vim-airline
 " ---
-let g:airline_theme                 = 'nord'
+let g:airline_theme                 = 'gruvbox'
 let g:airline_section_a             = airline#section#create(['mode'])
 let g:airline_section_b             = airline#section#create(['hunks', 'branch'])
 let g:airline_section_c             = airline#section#create(['%F'])
@@ -217,4 +223,3 @@ nnoremap <C-p> <esc>:Telescope find_files<CR>
 " ---
 nnoremap <Leader>b <esc>:NERDTreeToggle<CR>
 nnoremap <Leader>v <esc>:NERDTreeFind<CR>
-
