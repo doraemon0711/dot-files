@@ -77,7 +77,7 @@ colors:
   #     foreground: ''
   # line_indicator:
   #   foreground: None
-  #   background: None     
+  #   background: None
   selection:
     text:       CellBackground
     background: CellForeground
