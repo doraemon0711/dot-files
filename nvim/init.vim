@@ -209,7 +209,7 @@ nnoremap <Leader>v <esc>:NERDTreeFind<CR>
 " ---
 " FZF
 " ---
-nnoremap <C-g> <esc>:BLines<CR>
+nnoremap <C-f> <esc>:BLines<CR>
 nnoremap <C-o> <esc>:History<CR>
 nnoremap <C-p> <esc>:Files<CR>
 
