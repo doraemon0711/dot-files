@@ -88,11 +88,11 @@ set           number
 set           wrap
 set           linebreak
 set           cursorline
+set           guifont=Fira\ Code:h11
 "Change TAB to be similar to VS Code
 set           tabstop=4
 set           shiftwidth=4
 set           expandtab
-set           guifont=Fira\ Code:h11
 
 " -----------------------------
 " PLUGIN SPECIFIC CONFIGURATION
@@ -105,7 +105,7 @@ let g:vim_markdown_folding_disabled = 1
 " ---
 " COC
 " ---
-let g:coc_global_extensions = ['coc-godot', 'coc-git']
+let g:coc_global_extensions = ['coc-godot']
 
 " ---
 " morhetz/gruvbox
