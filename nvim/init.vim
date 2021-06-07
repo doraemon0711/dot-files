@@ -2,8 +2,8 @@
 " Maintainer: Tobias Johansson (TobiasDev)
 " Repo: https://github.com/TobiasDev/dot-files
 " NeoVim: ^0.5
-" Version: 0.7
-" Changes: Cleaning up among some plugins and shortcuts
+" Version: 0.8
+" Changes: Adding new plugins so I can use VIM for notes.
 " Windows: C:\Users\USERNAME\AppData\Local\nvim\
 " Linux: .config\nvim\
 " ---------------------------------------------------------------
@@ -61,15 +61,17 @@ call plug#begin('~/.nvim/plugged')
 " Development
 " ---
     Plug 'godlygeek/tabular'
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-commentary'
     Plug 'townk/vim-autoclose'
+    Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'calviken/vim-gdscript3'
 " ---
 " Writing
 " ---
     Plug 'plasticboy/vim-markdown'
+    Plug 'vimwiki/vimwiki'
 call plug#end()
 
 " ---------------------------------------------------------------
