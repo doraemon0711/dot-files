@@ -37,7 +37,7 @@ call plug#begin('~/.nvim/plugged')
 " ---
 " Style
 " ---
-    Plug 'morhetz/gruvbox'
+    Plug 'arcticicestudio/nord-vim'
     Plug 'vim-airline/vim-airline-themes'
 " ---
 " File-explorer
@@ -78,7 +78,7 @@ call plug#end()
 " CONFIGURATION
 " ---------------------------------------------------------------
 syntax        enable
-colorscheme   gruvbox
+colorscheme   nord
 set           background=dark
 set           termguicolors
 set           encoding=utf-8
@@ -110,14 +110,9 @@ let g:vim_markdown_folding_disabled = 1
 let g:coc_global_extensions = ['coc-godot']
 
 " ---
-" morhetz/gruvbox
-" ---
-let g:gruvbox_contrast_dark = 'soft'
-let g:gruvbox_contrast_light = 'soft'
-" ---
 " vim-airline/vim-airline
 " ---
-let g:airline_theme                 = 'gruvbox'
+let g:airline_theme                 = 'nord'
 let g:airline_section_a             = airline#section#create(['mode'])
 let g:airline_section_b             = airline#section#create(['hunks', 'branch'])
 let g:airline_section_c             = airline#section#create(['%F'])
@@ -138,12 +133,6 @@ noremap <Space> <Nop>
 " -----------------------------
 " NORMAL MODE
 " -----------------------------
-" Movement changes
-nnoremap <C-h> <esc>10h
-nnoremap <C-l> <esc>10l
-nnoremap <C-j> <esc>10j
-nnoremap <C-k> <esc>10k
-
 " Jump between splits easy
 nnoremap <S-h> <esc><C-w>h
 nnoremap <S-l> <esc><C-w>l
@@ -189,11 +178,6 @@ inoremap <M-k> <esc>ddkPi
 " Adds the 'standard' copy and paste behaviour
 vnoremap <C-c> "+y
 
-" Movement changes
-vnoremap <C-h> 10h
-vnoremap <C-l> 10l
-vnoremap <C-j> 10j
-vnoremap <C-k> 10k
 
 " Quick comment out
 vnoremap <Leader>c :Commentary<cr>
