@@ -1,8 +1,8 @@
 # Configuration for Alacritty
 # Original file: https://github.com/alacritty/alacritty/
 # Maintainer of this file: Tobias Johansson (TobiasDev)
-# Version: 0.3
-# Changes: Switched color-theme to Nord, and removed a lot of the default settings from the file
+# Version: 0.4
+# Changes: Switched to Fira Code and updated to Molokai colors
 # Windows config lives: %APPDATA%/alacritty/alacritty.yml
 # Linux config lives: .config/alacritty/alacritty.yml
 
@@ -45,7 +45,7 @@ window:
 # Font configuration
 font:
   normal:
-    family: 'Fira Mono'
+    family: 'Fira Code'
 
   # Point size
   size: 11.0
