@@ -1,9 +1,9 @@
 " ---------------------------------------------------------------
 " Maintainer: Tobias Johansson (TobiasDev)
 " Repo: https://github.com/TobiasDev/dot-files
-" NeoVim: ^0.5
-" Version: 0.8
-" Changes: Moving over to Molokai theme
+" NeoVim: ^0.4
+" Version: 0.9
+" Changes: Tweaks to the font-size and other small things to work with NeoVide
 " Windows: C:\Users\USERNAME\AppData\Local\nvim\
 " Linux: .config\nvim\
 " ---------------------------------------------------------------
@@ -11,7 +11,7 @@
 " ---------------------------------------------------------------
 " HOST - Windows 10 specific
 " ---------------------------------------------------------------
-let g:python3_host_prog = 'C:\Python38\python.exe'
+" let g:python3_host_prog = 'C:\Python38\python.exe'
 
 " ---------------------------------------------------------------
 " PLUGINS
@@ -90,7 +90,7 @@ set           number
 set           wrap
 set           linebreak
 set           cursorline
-set           guifont=Fira\ Code:h11
+set           guifont=Fira\ Code:h13
 "Change TAB to be similar to VS Code
 set           tabstop=4
 set           shiftwidth=4
@@ -203,13 +203,3 @@ nnoremap <C-p> <esc>:Files<CR>
 " ---
 " COC
 " ---
-" use <tab> for trigger completion and navigate to the next complete item
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
-inoremap <silent><expr> <Tab>
-            \ pumvisible() ? "\<C-n>" :
-            \ <SID>check_back_space() ? "\<Tab>" :
-            \ coc#refresh()
