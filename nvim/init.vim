@@ -142,16 +142,9 @@ nnoremap <Leader>l <esc><C-w>r
 nnoremap <Leader>j <esc><C-w>10>
 nnoremap <Leader>k <esc><C-w>10<
 
-" Holding down ALT and using jk moves the full line up or down
-nnoremap <M-j> <esc>ddp
-nnoremap <M-k> <esc>ddkP
-
 " Go between diffs
 nnoremap <M-l> <esc>]c
 nnoremap <M-h> <esc>[c
-
-" Quick comment out
-nnoremap <Leader>c :Commentary<cr>
 
 " Open a new split
 nnoremap <Leader>s <esc>:vs<cr>
@@ -162,35 +155,15 @@ nnoremap <Leader>s <esc>:vs<cr>
 " Add CTRL+V to paste from OS Clipboard
 inoremap <C-v> <esc>"+pi
 
-" Holding down CTRL and using hjkl make the cursor move like in Normal mode
-inoremap <C-h> <left>
-inoremap <C-j> <down>
-inoremap <C-k> <up>
-inoremap <C-l> <right>
-
-" Holding down ALT and using jk moves the full line up or down
-inoremap <M-j> <esc>ddpi
-inoremap <M-k> <esc>ddkPi
-
 " -----------------------------
 " VISUAL MODE
 " -----------------------------
 " Adds the 'standard' copy and paste behaviour
 vnoremap <C-c> "+y
 
-
-" Quick comment out
-vnoremap <Leader>c :Commentary<cr>
-
 " -----------------------------
 " Plugin-specific
 " -----------------------------
-
-" ---
-" NERDTree
-" ---
-nnoremap <Leader>b <esc>:NERDTreeToggle<CR>
-nnoremap <Leader>v <esc>:NERDTreeFind<CR>
 
 " ---
 " FZF
@@ -199,7 +172,3 @@ nnoremap <C-f> <esc>:Rg<CR>
 nnoremap <C-g> <esc>:BLines<CR>
 nnoremap <C-o> <esc>:History<CR>
 nnoremap <C-p> <esc>:Files<CR>
-
-" ---
-" COC
-" ---
