@@ -13,6 +13,8 @@ Possible plugins
 ---------------------------------------------------------------
 --]]
 
+
+
 ---------------------------------------------------------------
 -- HOST - Windows 10 specific
 ---------------------------------------------------------------
@@ -85,7 +87,38 @@ vim.o.expandtab = true
 -- Plugins
 ------------------------------------------
 require'lspconfig'.pyright.setup{}
-require'lspconfig'.gdscript.setup{}
+require'lspconfig'.gdscript.setup{
+  on_attach = function (client)
+    local _notify = client.notify
+    client.notify = function (method, params)
+      if method == 'textDocument/didClose' then
+          -- Godot doesn't implement didClose yet
+          return
+      end
+      _notify(method, params)
+    end
+  end
+}
+
+local configs = require "lspconfig/configs"
+local util = require "lspconfig/util"
+
+configs.gdscript = {
+  default_config = {
+    cmd = { "nc", "localhost", "6008" },
+    filetypes = { "gd", "gdscript", "gdscript3" },
+    root_dir = util.root_pattern("project.godot", ".git"),
+  },
+  docs = {
+    description = [[
+https://github.com/godotengine/godot
+Language server for GDScript, used by Godot Engine.
+]],
+    default_config = {
+      root_dir = [[util.root_pattern("project.godot", ".git")]],
+    },
+  },
+}
 
 vim.o.completeopt = "menuone,noselect"
 
