@@ -4,7 +4,7 @@ Maintainer:     Tobias Johansson (TobiasDev)
 Repo:           https://github.com/TobiasDev/dot-files
 NeoVim:         ^0.5
 Version:        0.1.0
-Changes:        Trying to convert my init.vim to init.lua
+Changes:        Moving to packer and splitting the plugins into it's own .lua file
 Windows:        C:\Users\USERNAME\AppData\Local\nvim\
 Linux:          .config\nvim\
 
@@ -13,60 +13,42 @@ Possible plugins
 ---------------------------------------------------------------
 --]]
 
-
-
 ---------------------------------------------------------------
 -- HOST - Windows 10 specific
 ---------------------------------------------------------------
 vim.g.python3_host_prog = "C:/Scoop/apps/python/current/python.exe"
 
----------------------------------------------------------------
--- Plugin-manager (paq)
----------------------------------------------------------------
-require 'paq-nvim' {
-    'savq/paq-nvim';                  -- Let Paq manage itself, after first install
-------------------------------------------
--- Style
-------------------------------------------
-    'rktjmp/lush.nvim';
-    'npxbr/gruvbox.nvim';
-------------------------------------------
--- Development
-------------------------------------------
-    'neovim/nvim-lspconfig';
-    'nvim-treesitter/nvim-treesitter';
-    'hrsh7th/nvim-compe';
-    'windwp/nvim-autopairs';
-    'TimUntersberger/neogit';
-    'kabouzeid/nvim-lspinstall';
-------------------------------------------
--- Nice other things
-------------------------------------------
-    'junegunn/fzf';
-    'junegunn/fzf.vim';
-    'nvim-lua/plenary.nvim';
-    'nvim-lua/popup.nvim';
-    'nvim-telescope/telescope.nvim';
-    'hoob3rt/lualine.nvim';
-    'habamax/vim-godot';
-}
+-- Make sure we have packer installed before using it!
+local execute = vim.api.nvim_command
+local fn = vim.fn
+
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+
+if fn.empty(fn.glob(install_path)) > 0 then
+  fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
+  execute 'packadd packer.nvim'
+end
 
 ---------------------------------------------------------------
--- Requirments
+-- Plugin-manager (Packer)
 ---------------------------------------------------------------
-require('nvim-autopairs').setup()
-require('lualine').setup()
-require('neogit').setup()
+require 'plugins'
 
----------------------------------------------------------------
--- Settings
----------------------------------------------------------------
 ------------------------------------------
--- Style
+-- Style (we load this first to make sure all plugins use it)
 ------------------------------------------
 vim.o.background = "dark"
 vim.cmd([[colorscheme gruvbox]])
 
+------------------------------------------
+-- Requirments
+------------------------------------------
+require('lualine').setup()
+require('nvim-autopairs').setup()
+
+---------------------------------------------------------------
+-- Settings
+---------------------------------------------------------------
 ------------------------------------------
 -- Other
 ------------------------------------------
@@ -77,51 +59,69 @@ vim.o.cursorline = true
 vim.o.encoding = "utf-8"
 vim.o.fileencoding = "utf-8"
 vim.o.signcolumn = "yes"
+vim.o.completeopt = "menuone,noselect"
 
 -- Change TAB to be similar to VS Code
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
 
+---------------------------------------------------------------
+-- Plugin settings
+---------------------------------------------------------------
 ------------------------------------------
--- Plugins
+-- nvim-lspconfig
 ------------------------------------------
-require'lspconfig'.pyright.setup{}
-require'lspconfig'.gdscript.setup{
-  on_attach = function (client)
-    local _notify = client.notify
-    client.notify = function (method, params)
-      if method == 'textDocument/didClose' then
-          -- Godot doesn't implement didClose yet
-          return
-      end
-      _notify(method, params)
-    end
-  end
-}
+local nvim_lsp = require('lspconfig')
 
-local configs = require "lspconfig/configs"
-local util = require "lspconfig/util"
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
-configs.gdscript = {
-  default_config = {
-    cmd = { "nc", "localhost", "6008" },
-    filetypes = { "gd", "gdscript", "gdscript3" },
-    root_dir = util.root_pattern("project.godot", ".git"),
-  },
-  docs = {
-    description = [[
-https://github.com/godotengine/godot
-Language server for GDScript, used by Godot Engine.
-]],
-    default_config = {
-      root_dir = [[util.root_pattern("project.godot", ".git")]],
-    },
-  },
-}
+  --Enable completion triggered by <c-x><c-o>
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-vim.o.completeopt = "menuone,noselect"
+  -- Mappings.
+  local opts = { noremap=true, silent=true }
 
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+
+end
+
+-- Use a loop to conveniently call 'setup' on multiple servers and
+-- map buffer local keybindings when the language server attaches
+local servers = { 'gdscript', 'html' }
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup {
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    }
+  }
+end
+
+------------------------------------------
+-- nvim-compe
+------------------------------------------
 require'compe'.setup {
   enabled = true;
   autocomplete = true;
@@ -130,87 +130,31 @@ require'compe'.setup {
   preselect = 'enable';
   throttle_time = 80;
   source_timeout = 200;
+  resolve_timeout = 800;
   incomplete_delay = 400;
   max_abbr_width = 100;
   max_kind_width = 100;
   max_menu_width = 100;
-  documentation = false;
+  documentation = {
+    border = { '', '' ,'', ' ', '', '', '', ' ' }, -- the border option is the same as `|help nvim_open_win|`
+    winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
+    max_width = 120,
+    min_width = 60,
+    max_height = math.floor(vim.o.lines * 0.3),
+    min_height = 1,
+  };
 
   source = {
     path = true;
     buffer = true;
     calc = true;
-    vsnip = true;
     nvim_lsp = true;
     nvim_lua = true;
-    spell = true;
-    tags = true;
-    snippets_nvim = true;
-    treesitter = true;
+    vsnip = true;
+    ultisnips = true;
+    luasnip = true;
   };
 }
-
-local t = function(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
-local check_back_space = function()
-    local col = vim.fn.col('.') - 1
-    if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-        return true
-    else
-        return false
-    end
-end
-
--- Use (s-)tab to:
---- move to prev/next item in completion menuone
---- jump to prev/next snippet's placeholder
-_G.tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t "<C-n>"
-  elseif vim.fn.call("vsnip#available", {1}) == 1 then
-    return t "<Plug>(vsnip-expand-or-jump)"
-  elseif check_back_space() then
-    return t "<Tab>"
-  else
-    return vim.fn['compe#complete']()
-  end
-end
-_G.s_tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t "<C-p>"
-  elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
-    return t "<Plug>(vsnip-jump-prev)"
-  else
-    -- If <S-Tab> is not working in your terminal, change it to <C-h>
-    return t "<S-Tab>"
-  end
-end
-
-vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-
-
-----------------------------------------------------------------
-local function setup_servers()
-  require'lspinstall'.setup()
-  local servers = require'lspinstall'.installed_servers()
-  for _, server in pairs(servers) do
-    require'lspconfig'[server].setup{}
-  end
-end
-
-setup_servers()
-
--- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
-require'lspinstall'.post_install_hook = function ()
-  setup_servers() -- reload installed servers
-  vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
-end
-
 
 ---------------------------------------------------------------
 -- Shortcuts
@@ -247,12 +191,12 @@ map('n', '<Leader>l', '<esc><C-w>r')
 map('i', '<C-v>', '<esc>"+pi')
 map('v', '<C-c>', '"+y')
 
-
 ------------------------------------------
--- Adding shortcuts to open files and such
+-- Telescope 
 ------------------------------------------
-map('n', '<C-f>', '<cmd>BLines<CR>')
+map('n', '<C-f>', '<cmd>:Telescope current_buffer_fuzzy_find<CR>')
 map('n', '<Leader>f', '<cmd>:Telescope grep_string<CR>')
 map('n', '<C-g>', '<cmd>:Telescope find_files<CR>')
 map('n', '<Leader>g', '<cmd>:Telescope live_grep<CR>')
-map('n', '<Leader>b', '<cmd>Telescope file_browser<CR>')
+map('n', '<Leader>b', '<cmd>:Telescope file_browser<CR>')
+map('n', '<Leader>h', '<cmd>:Telescope oldfiles<CR>')
