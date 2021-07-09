@@ -1,10 +1,10 @@
 # Configuration for Alacritty
-# Original file: https://github.com/alacritty/alacritty/
+# Original file:           https://github.com/alacritty/alacritty/
 # Maintainer of this file: Tobias Johansson (TobiasDev)
-# Version: 0.4
-# Changes: Switched to Fira Code and updated to Molokai colors
-# Windows config lives: %APPDATA%/alacritty/alacritty.yml
-# Linux config lives: .config/alacritty/alacritty.yml
+# Version:                 0.4.1
+# Changes:                 Back to Gruvbox
+# Windows config lives:    %APPDATA%/alacritty/alacritty.yml
+# Linux config lives:      .config/alacritty/alacritty.yml
 
 window:
   # Window padding (changes require restart)
