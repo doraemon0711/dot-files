@@ -3,8 +3,8 @@
 Maintainer:     Tobias Johansson (TobiasDev)
 Repo:           https://github.com/TobiasDev/dot-files
 NeoVim:         ^0.5
-Version:        0.1.0
-Changes:        Moving to packer and splitting the plugins into it's own .lua file
+Version:        0.1.1
+Changes:        Temporarily moving away from nvim-lsp since it has issues with Godot Game Engine
 Windows:        C:\Users\USERNAME\AppData\Local\nvim\
 Linux:          .config\nvim\
 
@@ -72,7 +72,7 @@ vim.o.expandtab = true
 ------------------------------------------
 -- nvim-lspconfig
 ------------------------------------------
-local nvim_lsp = require('lspconfig')
+--[[ local nvim_lsp = require('lspconfig')
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -109,7 +109,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'gdscript', 'html' }
+local servers = { 'gdscript' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -118,11 +118,11 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
-
+ ]]
 ------------------------------------------
 -- nvim-compe
 ------------------------------------------
-require'compe'.setup {
+--[[ require'compe'.setup {
   enabled = true;
   autocomplete = true;
   debug = false;
@@ -154,7 +154,7 @@ require'compe'.setup {
     ultisnips = true;
     luasnip = true;
   };
-}
+} ]]
 
 ---------------------------------------------------------------
 -- Shortcuts

@@ -16,11 +16,13 @@ return require('packer').startup(function()
     ------------------------------------------
     -- Development
     ------------------------------------------
-    use 'neovim/nvim-lspconfig'
-    use 'nvim-treesitter/nvim-treesitter'
-    use 'hrsh7th/nvim-compe'
+    -- use 'neovim/nvim-lspconfig'
+    -- use 'nvim-treesitter/nvim-treesitter'
+    -- use 'hrsh7th/nvim-compe'
+    use 'neoclide/coc.nvim' 
     use 'windwp/nvim-autopairs'
     use 'habamax/vim-godot'
+    use 'b3nj5m1n/kommentary'
 
     ------------------------------------------
     -- Nice to have other things 
