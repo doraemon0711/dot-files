@@ -23,6 +23,7 @@ return require('packer').startup(function()
     use 'windwp/nvim-autopairs'
     use 'habamax/vim-godot'
     use 'b3nj5m1n/kommentary'
+    use 'godlygeek/tabular'
 
     ------------------------------------------
     -- Nice to have other things 
