@@ -12,7 +12,6 @@ return require('packer').startup(function()
     }
     use 'hoob3rt/lualine.nvim'
 
-
     ------------------------------------------
     -- Development
     ------------------------------------------
@@ -24,6 +23,7 @@ return require('packer').startup(function()
     use 'habamax/vim-godot'
     use 'b3nj5m1n/kommentary'
     use 'godlygeek/tabular'
+    use 'TimUntersberger/neogit'
 
     ------------------------------------------
     -- Nice to have other things 
@@ -34,6 +34,27 @@ return require('packer').startup(function()
     }
     use 'junegunn/fzf'
     use 'junegunn/fzf.vim'
+    use 'plasticboy/vim-markdown'
 
 
+    use { 
+        "vhyrro/neorg",
+        config = function()
+            require('neorg').setup {
+                -- Tell Neorg what modules to load
+                load = {
+                    ["core.defaults"] = {}, -- Load all the default modules
+                    ["core.norg.concealer"] = {}, -- Allows for use of icons
+                    ["core.norg.dirman"] = { -- Manage your directories with Neorg
+                        config = {
+                            workspaces = {
+                                my_workspace = "~/neorg"
+                            }
+                        }
+                    }
+                },
+            }
+        end,
+        requires = "nvim-lua/plenary.nvim"
+    }
 end)

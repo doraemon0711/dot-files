@@ -4,7 +4,7 @@ Maintainer:     Tobias Johansson (TobiasDev)
 Repo:           https://github.com/TobiasDev/dot-files
 NeoVim:         ^0.5
 Version:        0.1.1
-Changes:        Temporarily moving away from nvim-lsp since it has issues with Godot Game Engine
+Changes:        Updating font and cleaning
 Windows:        C:\Users\USERNAME\AppData\Local\nvim\
 Linux:          .config\nvim\
 
@@ -32,23 +32,23 @@ end
 ---------------------------------------------------------------
 -- Plugin-manager (Packer)
 ---------------------------------------------------------------
-require 'plugins'
-
+require "plugins"
 ------------------------------------------
--- Style (we load this first to make sure all plugins use it)
-------------------------------------------
-vim.o.background = "dark"
-vim.cmd([[colorscheme gruvbox]])
-
-------------------------------------------
--- Requirments
+-- Make sure plugins are used
 ------------------------------------------
 require('lualine').setup()
 require('nvim-autopairs').setup()
+require('neogit').setup()
 
 ---------------------------------------------------------------
 -- Settings
 ---------------------------------------------------------------
+------------------------------------------
+-- Style
+------------------------------------------
+vim.o.background = "dark"
+vim.cmd([[colorscheme gruvbox]])
+
 ------------------------------------------
 -- Other
 ------------------------------------------
@@ -59,7 +59,10 @@ vim.o.cursorline = true
 vim.o.encoding = "utf-8"
 vim.o.fileencoding = "utf-8"
 vim.o.signcolumn = "yes"
+vim.o.guifont = "Fira\\Code Font:h12"
 vim.o.completeopt = "menuone,noselect"
+vim.o.cmdheight = 2
+vim.o.updatetime = 300
 
 -- Change TAB to be similar to VS Code
 vim.o.tabstop = 4
@@ -69,6 +72,9 @@ vim.o.expandtab = true
 ---------------------------------------------------------------
 -- Plugin settings
 ---------------------------------------------------------------
+vim.g.vim_markdown_folding_disabled = 1
+
+
 ------------------------------------------
 -- nvim-lspconfig
 ------------------------------------------
@@ -200,3 +206,12 @@ map('n', '<C-g>', '<cmd>:Telescope find_files<CR>')
 map('n', '<Leader>g', '<cmd>:Telescope live_grep<CR>')
 map('n', '<Leader>b', '<cmd>:Telescope file_browser<CR>')
 map('n', '<Leader>h', '<cmd>:Telescope oldfiles<CR>')
+
+------------------------------------------
+-- Auto-complete 
+------------------------------------------
+
+------------------------------------------
+-- Godot
+------------------------------------------
+map('n', '<M-g>', '<cmd>:GodotRun<CR>')
