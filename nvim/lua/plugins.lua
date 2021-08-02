@@ -15,9 +15,6 @@ return require('packer').startup(function()
     ------------------------------------------
     -- Development
     ------------------------------------------
-    -- use 'neovim/nvim-lspconfig'
-    -- use 'nvim-treesitter/nvim-treesitter'
-    -- use 'hrsh7th/nvim-compe'
     use 'neoclide/coc.nvim' 
     use 'windwp/nvim-autopairs'
     use 'habamax/vim-godot'
@@ -35,26 +32,4 @@ return require('packer').startup(function()
     use 'junegunn/fzf'
     use 'junegunn/fzf.vim'
     use 'plasticboy/vim-markdown'
-
-
-    use { 
-        "vhyrro/neorg",
-        config = function()
-            require('neorg').setup {
-                -- Tell Neorg what modules to load
-                load = {
-                    ["core.defaults"] = {}, -- Load all the default modules
-                    ["core.norg.concealer"] = {}, -- Allows for use of icons
-                    ["core.norg.dirman"] = { -- Manage your directories with Neorg
-                        config = {
-                            workspaces = {
-                                my_workspace = "~/neorg"
-                            }
-                        }
-                    }
-                },
-            }
-        end,
-        requires = "nvim-lua/plenary.nvim"
-    }
 end)
